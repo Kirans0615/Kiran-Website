@@ -35,9 +35,6 @@ jobs:
           NODE_ENV: production
           GITHUB_PAGES: "true"
 
-      - name: Add .nojekyll
-        run: touch ./out/.nojekyll
-
       - name: Upload Pages artifact
         uses: actions/upload-pages-artifact@v3
         with:
