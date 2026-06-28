@@ -111,7 +111,7 @@ function LinkedinIcon({ size = 16 }: { size?: number }) {
 const SOCIALS = [
   { Icon: GithubIcon,   label: "GitHub",   href: "https://github.com/Kirans0615"   },
   { Icon: LinkedinIcon, label: "LinkedIn", href: "https://linkedin.com/in/kiran-sen" },
-  { Icon: Mail,         label: "Email",    href: "mailto:alemarraa@gmail.com"        },
+  { Icon: Mail,         label: "Email",    href: "mailto:kirans0615@gmail.com"        },
 ];
 
 export function ContactSection() {
@@ -135,7 +135,7 @@ export function ContactSection() {
         setName(""); setEmail(""); setMessage("");
       } else throw new Error();
     } catch {
-      window.location.href = `mailto:alemarraa@gmail.com?subject=Portfolio Inquiry from ${encodeURIComponent(name)}&body=${encodeURIComponent(message)}`;
+      window.location.href = `mailto:kirans0615@gmail.com?subject=Portfolio Inquiry from ${encodeURIComponent(name)}&body=${encodeURIComponent(message)}`;
       setStatus("idle");
     }
   };
@@ -163,14 +163,24 @@ export function ContactSection() {
               Have a project in mind? I'd love to hear about it. Send me a message and let's discuss what we can build together.
             </p>
 
-            <div style={{ marginBottom: "36px" }}>
+            <div style={{ marginBottom: "36px", display: "flex", flexDirection: "column", gap: "16px" }}>
               <a
-                href="mailto:alemarraa@gmail.com"
+                href="mailto:kirans0615@gmail.com"
                 style={{ display: "flex", alignItems: "center", gap: "10px", color: "#13294B", textDecoration: "none", fontSize: "0.9rem" }}
                 data-cursor="hover"
               >
                 <Mail style={{ width: "16px", height: "16px", color: "#C8902A", flexShrink: 0 }} />
-                alemarraa@gmail.com
+                kirans0615@gmail.com
+              </a>
+              <a
+                href="tel:+13016332491"
+                style={{ display: "flex", alignItems: "center", gap: "10px", color: "#13294B", textDecoration: "none", fontSize: "0.9rem" }}
+                data-cursor="hover"
+              >
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#C8902A" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={{ flexShrink: 0 }}>
+                  <path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81a19.79 19.79 0 01-3.07-8.67A2 2 0 012 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 14.92z"/>
+                </svg>
+                301-633-2491
               </a>
             </div>
 
