@@ -54,7 +54,7 @@ export function AboutSection() {
             >
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img
-                src="https://raw.githubusercontent.com/Kirans0615/Kiran-Website/main/kiranhead.jpg"
+                src="https://raw.githubusercontent.com/Kirans0615/Kiran-Website/main/FB44638D-2147-4157-A68C-FF4B5917F309.png"
                 alt="Kiran Sen"
                 style={{
                   width: "100%",
