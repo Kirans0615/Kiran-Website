@@ -6,7 +6,7 @@ import { useReducedMotion } from "framer-motion";
 const CODE_FRAGMENTS = [
   `const { scrollY } = useScroll();`,
   `<motion.div\n  whileHover={{ scale: 1.05 }}\n  transition={{ type: "spring" }}>`,
-  `@theme {\n  --color-accent: #F59E0B;\n}`,
+  `@theme {\n  --color-primary: #13294B;\n}`,
   `export default function Hero() {`,
   `useEffect(() => {\n  lenis.raf(time);\n}, []);`,
   `viewport={{ once: true,\n  margin: "-80px" }}`,
@@ -46,12 +46,11 @@ export function FloatingCode() {
     const resize = () => {
       canvas.width = window.innerWidth;
       canvas.height = window.innerHeight;
-      // Re-seed fragments on resize
-      fragsRef.current = CODE_FRAGMENTS.map((text, i) => ({
+      fragsRef.current = CODE_FRAGMENTS.map((text) => ({
         text,
         x: (Math.random() * 0.9 + 0.05) * canvas.width,
         y: (Math.random() * 0.85 + 0.05) * canvas.height,
-        opacity: Math.random() * 0.12 + 0.05,
+        opacity: Math.random() * 0.07 + 0.03,
         speed: Math.random() * 0.3 + 0.1,
         size: Math.random() * 2 + 9,
         drift: (Math.random() - 0.5) * 0.4,
@@ -65,24 +64,22 @@ export function FloatingCode() {
     const draw = () => {
       t += 0.008;
       ctx.clearRect(0, 0, canvas.width, canvas.height);
-
       ctx.fontKerning = "none";
 
       fragsRef.current.forEach((frag) => {
         frag.y -= frag.speed * 0.4;
         frag.x += Math.sin(t * frag.speed + frag.phase) * frag.drift;
 
-        // Wrap
         if (frag.y < -120) frag.y = canvas.height + 40;
         if (frag.x < -200) frag.x = canvas.width + 50;
         if (frag.x > canvas.width + 200) frag.x = -50;
 
-        const pulse = Math.sin(t * frag.speed * 2 + frag.phase) * 0.03;
+        const pulse = Math.sin(t * frag.speed * 2 + frag.phase) * 0.02;
         const alpha = Math.max(0, frag.opacity + pulse);
 
         ctx.save();
         ctx.globalAlpha = alpha;
-        ctx.fillStyle = "#F59E0B";
+        ctx.fillStyle = "#13294B";
         ctx.font = `${frag.size}px "Geist Mono", "Fira Code", monospace`;
 
         const lines = frag.text.split("\n");
@@ -115,7 +112,7 @@ export function FloatingCode() {
         width: "100%",
         height: "100%",
         pointerEvents: "none",
-        opacity: 0.6,
+        opacity: 0.7,
       }}
     />
   );

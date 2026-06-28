@@ -31,8 +31,8 @@ function PerspectiveGrid() {
         height: "320px",
         overflow: "hidden",
         pointerEvents: "none",
-        maskImage: "linear-gradient(to top, rgba(0,0,0,0.5) 0%, transparent 100%)",
-        WebkitMaskImage: "linear-gradient(to top, rgba(0,0,0,0.5) 0%, transparent 100%)",
+        maskImage: "linear-gradient(to top, rgba(0,0,0,0.4) 0%, transparent 100%)",
+        WebkitMaskImage: "linear-gradient(to top, rgba(0,0,0,0.4) 0%, transparent 100%)",
       }}
     >
       <svg
@@ -40,7 +40,6 @@ function PerspectiveGrid() {
         preserveAspectRatio="none"
         style={{ width: "100%", height: "100%" }}
       >
-        {/* Horizontal lines converging to vanishing point */}
         {[0.1, 0.2, 0.3, 0.4, 0.55, 0.7, 0.85, 1].map((t, i) => {
           const y = 320 * (1 - Math.pow(1 - t, 2));
           const xLeft  = 720 - 720 * t;
@@ -50,23 +49,21 @@ function PerspectiveGrid() {
               key={`h${i}`}
               x1={xLeft} y1={y}
               x2={xRight} y2={y}
-              stroke="rgba(245,158,11,0.12)"
+              stroke="rgba(19,41,75,0.08)"
               strokeWidth={0.5}
             />
           );
         })}
-        {/* Vertical lines radiating from VP */}
         {[-6,-5,-4,-3,-2,-1,0,1,2,3,4,5,6].map((n, i) => (
           <line
             key={`v${i}`}
             x1={720} y1={0}
             x2={720 + n * 120} y2={320}
-            stroke="rgba(245,158,11,0.08)"
+            stroke="rgba(19,41,75,0.05)"
             strokeWidth={0.5}
           />
         ))}
-        {/* Horizon glow */}
-        <ellipse cx="720" cy="0" rx="340" ry="18" fill="rgba(245,158,11,0.07)" />
+        <ellipse cx="720" cy="0" rx="340" ry="18" fill="rgba(200,144,42,0.04)" />
       </svg>
     </div>
   );
@@ -86,9 +83,8 @@ export function Hero() {
     <section
       ref={sectionRef}
       id="hero"
-      style={{ position: "relative", minHeight: "100vh", display: "flex", flexDirection: "column", justifyContent: "center", overflow: "hidden" }}
+      style={{ position: "relative", minHeight: "100vh", display: "flex", flexDirection: "column", justifyContent: "center", overflow: "hidden", background: "#FAF8F4" }}
     >
-      {/* Layers: mesh → grid lines → floating code → perspective grid */}
       <MeshBackground />
 
       {/* Subtle dot-grid overlay */}
@@ -98,7 +94,7 @@ export function Hero() {
           position: "absolute",
           inset: 0,
           pointerEvents: "none",
-          backgroundImage: "radial-gradient(circle, rgba(245,158,11,0.12) 1px, transparent 1px)",
+          backgroundImage: "radial-gradient(circle, rgba(19,41,75,0.08) 1px, transparent 1px)",
           backgroundSize: "40px 40px",
           maskImage: "radial-gradient(ellipse 80% 60% at 50% 50%, black 20%, transparent 100%)",
           WebkitMaskImage: "radial-gradient(ellipse 80% 60% at 50% 50%, black 20%, transparent 100%)",
@@ -120,29 +116,28 @@ export function Hero() {
           animate={inView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
         >
-          {/* Terminal dot cluster */}
           <span style={{ display: "flex", gap: "5px", alignItems: "center" }}>
             <span style={{ width: 8, height: 8, borderRadius: "50%", background: "#FF5F57", display: "inline-block" }} />
             <span style={{ width: 8, height: 8, borderRadius: "50%", background: "#FFBD2E", display: "inline-block" }} />
             <span style={{ width: 8, height: 8, borderRadius: "50%", background: "#28CA41", display: "inline-block" }} />
           </span>
-          <span style={{ width: "1px", height: "20px", background: "rgba(245,158,11,0.3)" }} />
+          <span style={{ width: "1px", height: "20px", background: "rgba(200,144,42,0.4)" }} />
           <TextScramble
             text="Web Designer & Developer"
             delay={0.3}
-            style={{ color: "#F59E0B", fontSize: "0.75rem", letterSpacing: "0.22em", textTransform: "uppercase" }}
+            style={{ color: "#A8761F", fontSize: "0.75rem", letterSpacing: "0.22em", textTransform: "uppercase" }}
           />
         </motion.div>
 
         {/* Main headline */}
         <h1
-          className="font-display font-bold text-white"
-          style={{ fontSize: "clamp(3rem, 9.5vw, 9rem)", lineHeight: 0.95, letterSpacing: "-0.02em", marginBottom: "1.5rem" }}
+          className="font-display font-bold"
+          style={{ fontSize: "clamp(3rem, 9.5vw, 9rem)", lineHeight: 0.95, letterSpacing: "-0.02em", marginBottom: "1.5rem", color: "#13294B" }}
         >
           {HEADLINE_WORDS.map(({ word, accent }, i) => (
             <span key={word} style={{ display: "inline-block", overflow: "hidden", marginRight: "0.15em" }}>
               <motion.span
-                style={{ display: "inline-block", color: accent ? "#F59E0B" : "#fff" }}
+                style={{ display: "inline-block", color: accent ? "#C8902A" : "#13294B" }}
                 initial={shouldReduce ? {} : { y: "115%" }}
                 animate={inView ? { y: "0%" } : {}}
                 transition={{ duration: 0.95, delay: 0.15 + i * 0.11, ease: [0.16, 1, 0.3, 1] }}
@@ -165,7 +160,7 @@ export function Hero() {
 
         {/* Sub copy */}
         <motion.p
-          style={{ color: "#A8956E", fontSize: "1.05rem", lineHeight: 1.7, maxWidth: "480px", marginBottom: "3rem" }}
+          style={{ color: "#4A5568", fontSize: "1.05rem", lineHeight: 1.7, maxWidth: "480px", marginBottom: "3rem" }}
           initial={shouldReduce ? {} : { opacity: 0, y: 16 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.8, delay: 0.75, ease: [0.16, 1, 0.3, 1] }}
@@ -186,18 +181,17 @@ export function Hero() {
               style={{
                 padding: "4px 14px",
                 borderRadius: "999px",
-                border: "1px solid rgba(245,158,11,0.25)",
-                background: "rgba(245,158,11,0.06)",
-                color: "#A8956E",
+                border: "1px solid rgba(19,41,75,0.18)",
+                background: "rgba(19,41,75,0.05)",
+                color: "#4A5568",
                 fontSize: "11px",
                 letterSpacing: "0.08em",
                 fontFamily: "monospace",
-                backdropFilter: "blur(8px)",
               }}
               initial={shouldReduce ? {} : { opacity: 0, scale: 0.85 }}
               animate={inView ? { opacity: 1, scale: 1 } : {}}
               transition={{ duration: 0.4, delay: 0.9 + i * 0.06, ease: [0.16, 1, 0.3, 1] }}
-              whileHover={shouldReduce ? {} : { borderColor: "rgba(245,158,11,0.6)", color: "#F59E0B", y: -2, transition: { duration: 0.2 } }}
+              whileHover={shouldReduce ? {} : { borderColor: "rgba(200,144,42,0.5)", color: "#A8761F", y: -2, transition: { duration: 0.2 } }}
             >
               {pill}
             </motion.span>
@@ -215,7 +209,7 @@ export function Hero() {
             onClick={() => scrollTo("#portfolio")}
             data-cursor="View"
             className="font-display font-semibold rounded-full text-sm tracking-wide"
-            style={{ padding: "14px 32px", backgroundColor: "#F59E0B", color: "#0A0906", boxShadow: "0 0 40px rgba(245,158,11,0.3)" }}
+            style={{ padding: "14px 32px", backgroundColor: "#13294B", color: "#FAF8F4", boxShadow: "0 4px 24px rgba(19,41,75,0.2)" }}
           >
             View My Work
           </MagneticButton>
@@ -223,7 +217,7 @@ export function Hero() {
             onClick={() => scrollTo("#contact")}
             data-cursor="hover"
             className="font-display font-medium rounded-full text-sm tracking-wide"
-            style={{ padding: "14px 32px", border: "1px solid rgba(245,158,11,0.3)", color: "#fff", backdropFilter: "blur(8px)" }}
+            style={{ padding: "14px 32px", border: "1px solid rgba(19,41,75,0.3)", color: "#13294B" }}
           >
             Get in Touch
           </MagneticButton>
@@ -237,17 +231,17 @@ export function Hero() {
                 borderRadius: "50%",
                 background: "#10b981",
                 display: "inline-block",
-                boxShadow: "0 0 10px rgba(16,185,129,0.7)",
+                boxShadow: "0 0 10px rgba(16,185,129,0.6)",
                 animation: "pulse-dot 2s infinite",
               }}
             />
-            <span style={{ color: "#6B5F4A", fontSize: "12px" }}>Available for projects</span>
+            <span style={{ color: "#4A5568", fontSize: "12px" }}>Available for projects</span>
           </div>
         </motion.div>
 
         {/* Stats strip */}
         <motion.div
-          style={{ display: "flex", flexWrap: "wrap", gap: "40px", marginTop: "72px", paddingTop: "40px", borderTop: "1px solid rgba(245,158,11,0.1)" }}
+          style={{ display: "flex", flexWrap: "wrap", gap: "40px", marginTop: "72px", paddingTop: "40px", borderTop: "1px solid rgba(19,41,75,0.1)" }}
           initial={shouldReduce ? {} : { opacity: 0 }}
           animate={inView ? { opacity: 1 } : {}}
           transition={{ duration: 1, delay: 1.2 }}
@@ -259,8 +253,8 @@ export function Hero() {
             { n: "0",    label: "Templates Used"     },
           ].map(({ n, label }) => (
             <div key={label}>
-              <div className="font-display font-bold text-white" style={{ fontSize: "1.8rem", lineHeight: 1 }}>{n}</div>
-              <div style={{ color: "#6B5F4A", fontSize: "0.65rem", letterSpacing: "0.18em", textTransform: "uppercase", marginTop: "4px" }}>
+              <div className="font-display font-bold" style={{ fontSize: "1.8rem", lineHeight: 1, color: "#13294B" }}>{n}</div>
+              <div style={{ color: "#6B7280", fontSize: "0.65rem", letterSpacing: "0.18em", textTransform: "uppercase", marginTop: "4px" }}>
                 {label}
               </div>
             </div>
@@ -270,7 +264,7 @@ export function Hero() {
 
       {/* Scroll indicator */}
       <motion.div
-        style={{ position: "absolute", bottom: "28px", left: "50%", transform: "translateX(-50%)", display: "flex", flexDirection: "column", alignItems: "center", gap: "6px", color: "#6B5F4A", zIndex: 10 }}
+        style={{ position: "absolute", bottom: "28px", left: "50%", transform: "translateX(-50%)", display: "flex", flexDirection: "column", alignItems: "center", gap: "6px", color: "#6B7280", zIndex: 10 }}
         initial={shouldReduce ? {} : { opacity: 0 }}
         animate={inView ? { opacity: 1 } : {}}
         transition={{ delay: 1.5 }}
@@ -280,7 +274,7 @@ export function Hero() {
           animate={shouldReduce ? {} : { y: [0, 7, 0] }}
           transition={{ duration: 1.6, repeat: Infinity, ease: "easeInOut" }}
         >
-          <ChevronDown style={{ width: "14px", height: "14px", color: "#F59E0B" }} />
+          <ChevronDown style={{ width: "14px", height: "14px", color: "#C8902A" }} />
         </motion.div>
       </motion.div>
 

@@ -58,18 +58,18 @@ export function SkillTypewriter() {
         alignItems: "center",
         gap: "10px",
         fontSize: "0.9rem",
-        color: "#A8956E",
+        color: "#4A5568",
         minHeight: "1.4em",
       }}
     >
-      <span style={{ color: "#F59E0B", fontFamily: "monospace", fontSize: "1rem" }}>→</span>
-      <span style={{ color: "#fff" }}>{displayed}</span>
+      <span style={{ color: "#C8902A", fontFamily: "monospace", fontSize: "1rem" }}>→</span>
+      <span style={{ color: "#13294B", fontWeight: 500 }}>{displayed}</span>
       <span
         style={{
           display: "inline-block",
           width: "2px",
           height: "1em",
-          backgroundColor: "#F59E0B",
+          backgroundColor: "#C8902A",
           animation: "blink 1s step-end infinite",
           verticalAlign: "middle",
         }}

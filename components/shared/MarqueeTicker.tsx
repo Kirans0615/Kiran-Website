@@ -15,8 +15,8 @@ export function MarqueeTicker() {
 
   return (
     <div
-      className="overflow-hidden py-6 border-y border-border/10"
-      style={{ borderColor: "rgba(245,158,11,0.1)" }}
+      className="overflow-hidden py-6"
+      style={{ borderTop: "1px solid #E2DACD", borderBottom: "1px solid #E2DACD", background: "#F2EDE4" }}
     >
       <div
         style={{
@@ -34,14 +34,14 @@ export function MarqueeTicker() {
               display: "inline-flex",
               alignItems: "center",
               gap: "2rem",
-              color: "#A8956E",
+              color: "#4A5568",
               fontSize: "0.75rem",
               letterSpacing: "0.15em",
               textTransform: "uppercase",
             }}
           >
             {skill}
-            <span style={{ color: "#F59E0B", fontSize: "1rem" }}>✦</span>
+            <span style={{ color: "#C8902A", fontSize: "1rem" }}>✦</span>
           </span>
         ))}
       </div>

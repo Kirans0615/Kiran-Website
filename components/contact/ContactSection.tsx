@@ -20,10 +20,10 @@ function FloatingField({
     width: "100%",
     background: "transparent",
     border: "none",
-    borderBottom: `1px solid ${focused ? "#F59E0B" : "rgba(245,158,11,0.2)"}`,
+    borderBottom: `1px solid ${focused ? "#C8902A" : "#E2DACD"}`,
     paddingTop: "24px",
     paddingBottom: "8px",
-    color: "#ffffff",
+    color: "#1F2933",
     fontSize: "0.9rem",
     outline: "none",
     resize: "none",
@@ -40,7 +40,7 @@ function FloatingField({
           left: 0,
           top: active ? "0" : "22px",
           fontSize: active ? "10px" : "14px",
-          color: active ? "#F59E0B" : "#A8956E",
+          color: active ? "#A8761F" : "#4A5568",
           letterSpacing: active ? "0.15em" : "normal",
           textTransform: active ? "uppercase" : "none",
           transition: "all 0.25s ease",
@@ -83,7 +83,7 @@ function FloatingField({
           bottom: 0,
           left: 0,
           height: "1px",
-          background: "#F59E0B",
+          background: "#C8902A",
           width: focused ? "100%" : "0%",
           transition: "width 0.4s ease",
         }}
@@ -141,7 +141,7 @@ export function ContactSection() {
   };
 
   return (
-    <section id="contact" style={{ padding: "8rem 1.5rem", background: "rgba(20,18,16,0.4)" }}>
+    <section id="contact" style={{ padding: "8rem 1.5rem", background: "#F2EDE4" }}>
       <div className="max-w-7xl mx-auto">
         <SectionHeading label="Get In Touch" title="Let's Work Together" />
 
@@ -159,17 +159,17 @@ export function ContactSection() {
             viewport={{ once: true }}
             transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
           >
-            <p style={{ color: "#A8956E", fontSize: "1.05rem", lineHeight: 1.7, marginBottom: "40px", maxWidth: "340px" }}>
+            <p style={{ color: "#4A5568", fontSize: "1.05rem", lineHeight: 1.7, marginBottom: "40px", maxWidth: "340px" }}>
               Have a project in mind? I'd love to hear about it. Send me a message and let's discuss what we can build together.
             </p>
 
             <div style={{ marginBottom: "36px" }}>
               <a
                 href="mailto:alemarraa@gmail.com"
-                style={{ display: "flex", alignItems: "center", gap: "10px", color: "#fff", textDecoration: "none", fontSize: "0.9rem" }}
+                style={{ display: "flex", alignItems: "center", gap: "10px", color: "#13294B", textDecoration: "none", fontSize: "0.9rem" }}
                 data-cursor="hover"
               >
-                <Mail style={{ width: "16px", height: "16px", color: "#F59E0B", flexShrink: 0 }} />
+                <Mail style={{ width: "16px", height: "16px", color: "#C8902A", flexShrink: 0 }} />
                 alemarraa@gmail.com
               </a>
             </div>
@@ -187,12 +187,13 @@ export function ContactSection() {
                     width: "42px",
                     height: "42px",
                     borderRadius: "50%",
-                    border: "1px solid rgba(245,158,11,0.2)",
+                    border: "1px solid #E2DACD",
                     display: "flex",
                     alignItems: "center",
                     justifyContent: "center",
-                    color: "#A8956E",
+                    color: "#4A5568",
                     textDecoration: "none",
+                    background: "#FFFFFF",
                     transition: "all 0.3s",
                   }}
                 >
@@ -220,7 +221,7 @@ export function ContactSection() {
                     width: "64px",
                     height: "64px",
                     borderRadius: "50%",
-                    background: "rgba(16,185,129,0.15)",
+                    background: "rgba(16,185,129,0.12)",
                     border: "1px solid rgba(16,185,129,0.3)",
                     display: "flex",
                     alignItems: "center",
@@ -231,13 +232,13 @@ export function ContactSection() {
                 >
                   ✓
                 </div>
-                <h3 className="font-display font-bold text-white" style={{ fontSize: "1.5rem", marginBottom: "12px" }}>
+                <h3 className="font-display font-bold" style={{ color: "#13294B", fontSize: "1.5rem", marginBottom: "12px" }}>
                   Message Sent!
                 </h3>
-                <p style={{ color: "#A8956E", marginBottom: "24px" }}>I'll get back to you within 24 hours.</p>
+                <p style={{ color: "#4A5568", marginBottom: "24px" }}>I'll get back to you within 24 hours.</p>
                 <button
                   onClick={() => setStatus("idle")}
-                  style={{ color: "#F59E0B", fontSize: "13px", background: "none", border: "none", cursor: "none" }}
+                  style={{ color: "#A8761F", fontSize: "13px", background: "none", border: "none", cursor: "none" }}
                   data-cursor="hover"
                 >
                   Send another →
@@ -268,10 +269,11 @@ export function ContactSection() {
                   className="font-display font-semibold rounded-full text-sm tracking-wide transition-colors duration-300 flex items-center justify-center gap-2"
                   style={{
                     padding: "16px 32px",
-                    background: "#F59E0B",
-                    color: "#0A0906",
+                    background: "#13294B",
+                    color: "#FAF8F4",
                     opacity: status === "sending" ? 0.7 : 1,
                     width: "100%",
+                    boxShadow: "0 4px 20px rgba(19,41,75,0.2)",
                   }}
                 >
                   {status === "sending" ? "Sending…" : "Send Message"}

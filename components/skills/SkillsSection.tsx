@@ -34,13 +34,14 @@ function SkillCard({ skill, index }: { skill: typeof SKILLS[0]; index: number })
       data-cursor="hover"
       style={{
         position: "relative",
-        background: "#141210",
+        background: "#FFFFFF",
         borderRadius: "20px",
         padding: "24px",
-        border: `1px solid ${hovered ? "rgba(245,158,11,0.25)" : "rgba(245,158,11,0.08)"}`,
+        border: `1px solid ${hovered ? "rgba(200,144,42,0.35)" : "#E2DACD"}`,
         overflow: "hidden",
         transform: shouldReduce ? "none" : hovered ? "translateY(-6px)" : "translateY(0px)",
-        transition: "transform 0.3s ease, border-color 0.4s ease",
+        transition: "transform 0.3s ease, border-color 0.4s ease, box-shadow 0.4s ease",
+        boxShadow: hovered ? "0 12px 32px rgba(19,41,75,0.08)" : "0 2px 8px rgba(19,41,75,0.04)",
       }}
     >
       {/* Hover radial glow */}
@@ -52,7 +53,7 @@ function SkillCard({ skill, index }: { skill: typeof SKILLS[0]; index: number })
           pointerEvents: "none",
           opacity: hovered ? 1 : 0,
           transition: "opacity 0.5s",
-          background: "radial-gradient(ellipse at 50% 0%, rgba(245,158,11,0.09) 0%, transparent 70%)",
+          background: "radial-gradient(ellipse at 50% 0%, rgba(200,144,42,0.06) 0%, transparent 70%)",
         }}
       />
 
@@ -67,18 +68,18 @@ function SkillCard({ skill, index }: { skill: typeof SKILLS[0]; index: number })
             alignItems: "center",
             justifyContent: "center",
             marginBottom: "20px",
-            background: hovered ? "rgba(245,158,11,0.2)" : "rgba(245,158,11,0.1)",
+            background: hovered ? "rgba(200,144,42,0.18)" : "rgba(200,144,42,0.1)",
             transition: "background 0.3s",
           }}
         >
-          <Icon style={{ width: "18px", height: "18px", color: "#F59E0B" }} />
+          <Icon style={{ width: "18px", height: "18px", color: "#C8902A" }} />
         </div>
 
         {/* Title */}
         <h3
           className="font-display font-semibold"
           style={{
-            color: hovered ? "#FBBF24" : "#ffffff",
+            color: hovered ? "#C8902A" : "#13294B",
             fontSize: "1rem",
             marginBottom: "8px",
             transition: "color 0.3s",
@@ -88,16 +89,16 @@ function SkillCard({ skill, index }: { skill: typeof SKILLS[0]; index: number })
         </h3>
 
         {/* Desc */}
-        <p style={{ color: "#A8956E", fontSize: "0.82rem", lineHeight: 1.6, marginBottom: "20px" }}>
+        <p style={{ color: "#4A5568", fontSize: "0.82rem", lineHeight: 1.6, marginBottom: "20px" }}>
           {desc}
         </p>
 
         {/* Stat */}
-        <div style={{ paddingTop: "16px", borderTop: "1px solid rgba(245,158,11,0.08)" }}>
-          <div className="font-display font-bold" style={{ fontSize: "1.6rem", color: "#F59E0B" }}>
+        <div style={{ paddingTop: "16px", borderTop: "1px solid #E2DACD" }}>
+          <div className="font-display font-bold" style={{ fontSize: "1.6rem", color: "#C8902A" }}>
             {stat}
           </div>
-          <div style={{ color: "#6B5F4A", fontSize: "0.65rem", letterSpacing: "0.15em", textTransform: "uppercase", marginTop: "2px" }}>
+          <div style={{ color: "#6B7280", fontSize: "0.65rem", letterSpacing: "0.15em", textTransform: "uppercase", marginTop: "2px" }}>
             {statLabel}
           </div>
         </div>
@@ -108,7 +109,7 @@ function SkillCard({ skill, index }: { skill: typeof SKILLS[0]; index: number })
 
 export function SkillsSection() {
   return (
-    <section id="skills" style={{ padding: "8rem 1.5rem", background: "rgba(20,18,16,0.5)" }}>
+    <section id="skills" style={{ padding: "8rem 1.5rem", background: "#F2EDE4" }}>
       <div className="max-w-7xl mx-auto">
         <SectionHeading label="Capabilities" title="Skills & Services" />
         <div

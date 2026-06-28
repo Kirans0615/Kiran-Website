@@ -19,7 +19,8 @@ export function Footer() {
       ref={ref}
       style={{
         padding: "5rem 1.5rem 3rem",
-        borderTop: "1px solid rgba(245,158,11,0.08)",
+        background: "#13294B",
+        borderTop: "none",
         position: "relative",
         overflow: "hidden",
       }}
@@ -34,7 +35,7 @@ export function Footer() {
           width: "500px",
           height: "200px",
           borderRadius: "50%",
-          background: "rgba(245,158,11,0.04)",
+          background: "rgba(200,144,42,0.06)",
           filter: "blur(60px)",
           pointerEvents: "none",
         }}
@@ -48,7 +49,7 @@ export function Footer() {
             style={{
               fontSize: "clamp(3rem, 13vw, 11rem)",
               lineHeight: 0.85,
-              color: "rgba(255,255,255,0.04)",
+              color: "rgba(255,255,255,0.05)",
               display: "flex",
               flexWrap: "wrap",
               userSelect: "none",
@@ -80,9 +81,11 @@ export function Footer() {
             alignItems: "center",
             justifyContent: "space-between",
             gap: "16px",
+            paddingTop: "32px",
+            borderTop: "1px solid rgba(255,255,255,0.08)",
           }}
         >
-          <p style={{ color: "#6B5F4A", fontSize: "12px", letterSpacing: "0.05em" }}>
+          <p style={{ color: "rgba(250,248,244,0.45)", fontSize: "12px", letterSpacing: "0.05em" }}>
             © {new Date().getFullYear()} Kiran Sen. Built with Next.js & Framer Motion.
           </p>
 
@@ -94,7 +97,7 @@ export function Footer() {
               display: "flex",
               alignItems: "center",
               gap: "10px",
-              color: "#A8956E",
+              color: "rgba(250,248,244,0.6)",
               background: "none",
               border: "none",
               fontSize: "12px",
@@ -108,10 +111,11 @@ export function Footer() {
                 width: "32px",
                 height: "32px",
                 borderRadius: "50%",
-                border: "1px solid rgba(245,158,11,0.2)",
+                border: "1px solid rgba(200,144,42,0.35)",
                 display: "flex",
                 alignItems: "center",
                 justifyContent: "center",
+                color: "#C8902A",
               }}
             >
               <ArrowUp style={{ width: "12px", height: "12px" }} />

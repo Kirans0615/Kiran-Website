@@ -35,9 +35,9 @@ export function Navbar() {
       <motion.nav
         className="fixed top-0 left-0 right-0 z-[9990] transition-all duration-500"
         style={{
-          backgroundColor: scrolled ? "rgba(10,9,6,0.85)" : "transparent",
+          backgroundColor: scrolled ? "rgba(19,41,75,0.94)" : "transparent",
           backdropFilter: scrolled ? "blur(20px)" : "none",
-          borderBottom: scrolled ? "1px solid rgba(245,158,11,0.08)" : "1px solid transparent",
+          borderBottom: scrolled ? "1px solid rgba(255,255,255,0.08)" : "1px solid transparent",
         }}
         initial={{ y: -100, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
@@ -47,11 +47,12 @@ export function Navbar() {
           {/* Logo */}
           <motion.button
             onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
-            className="font-display font-bold text-white text-xl tracking-tighter"
+            className="font-display font-bold text-xl tracking-tighter"
+            style={{ color: scrolled ? "#FAF8F4" : "#13294B" }}
             whileHover={shouldReduce ? {} : { scale: 1.04 }}
             data-cursor="hover"
           >
-            KS<span style={{ color: "#F59E0B" }}>.</span>
+            KS<span style={{ color: "#C8902A" }}>.</span>
           </motion.button>
 
           {/* Desktop links */}
@@ -61,23 +62,24 @@ export function Navbar() {
                 <button
                   onClick={() => scrollTo(link.href)}
                   className="relative text-sm font-medium transition-colors duration-300 group"
-                  style={{ color: active === link.href ? "#F59E0B" : "#A8956E" }}
+                  style={{
+                    color: active === link.href
+                      ? "#C8902A"
+                      : scrolled ? "rgba(250,248,244,0.75)" : "#4A5568",
+                  }}
                   data-cursor="hover"
                 >
                   {link.label}
                   <span
-                    className="absolute -bottom-1 left-0 h-px bg-accent transition-all duration-400"
+                    className="absolute -bottom-1 left-0 h-px transition-all duration-400"
                     style={{
                       width: active === link.href ? "100%" : "0%",
-                      backgroundColor: "#F59E0B",
+                      backgroundColor: "#C8902A",
                     }}
                   />
                   <span
                     className="absolute -bottom-1 left-0 h-px transition-all duration-400 opacity-0 group-hover:opacity-100 group-hover:w-full"
-                    style={{
-                      width: "0%",
-                      backgroundColor: "#F59E0B",
-                    }}
+                    style={{ width: "0%", backgroundColor: "#C8902A" }}
                   />
                 </button>
               </li>
@@ -86,10 +88,10 @@ export function Navbar() {
 
           {/* CTA */}
           <MagneticButton
-            className="hidden md:flex px-5 py-2.5 border text-sm font-medium rounded-full transition-all duration-300 hover:text-background"
+            className="hidden md:flex px-5 py-2.5 border text-sm font-medium rounded-full transition-all duration-300"
             style={{
-              borderColor: "rgba(245,158,11,0.5)",
-              color: "#F59E0B",
+              borderColor: scrolled ? "rgba(200,144,42,0.6)" : "rgba(19,41,75,0.35)",
+              color: scrolled ? "#C8902A" : "#13294B",
             }}
             onClick={() => scrollTo("#contact")}
             data-cursor="hover"
@@ -105,16 +107,26 @@ export function Navbar() {
             data-cursor="hover"
           >
             <span
-              className="block w-6 h-px bg-white transition-all duration-300"
-              style={{ transform: menuOpen ? "rotate(45deg) translateY(4px)" : "none" }}
+              className="block w-6 h-px transition-all duration-300"
+              style={{
+                background: scrolled ? "#FAF8F4" : "#13294B",
+                transform: menuOpen ? "rotate(45deg) translateY(4px)" : "none",
+              }}
             />
             <span
-              className="block h-px bg-white transition-all duration-300"
-              style={{ width: menuOpen ? "0" : "1.5rem", opacity: menuOpen ? 0 : 1 }}
+              className="block h-px transition-all duration-300"
+              style={{
+                background: scrolled ? "#FAF8F4" : "#13294B",
+                width: menuOpen ? "0" : "1.5rem",
+                opacity: menuOpen ? 0 : 1,
+              }}
             />
             <span
-              className="block w-6 h-px bg-white transition-all duration-300"
-              style={{ transform: menuOpen ? "rotate(-45deg) translateY(-4px)" : "none" }}
+              className="block w-6 h-px transition-all duration-300"
+              style={{
+                background: scrolled ? "#FAF8F4" : "#13294B",
+                transform: menuOpen ? "rotate(-45deg) translateY(-4px)" : "none",
+              }}
             />
           </button>
         </div>
@@ -123,7 +135,7 @@ export function Navbar() {
       {/* Mobile menu */}
       <motion.div
         className="fixed inset-0 z-[9980] md:hidden flex flex-col items-center justify-center"
-        style={{ backgroundColor: "rgba(10,9,6,0.97)" }}
+        style={{ backgroundColor: "rgba(19,41,75,0.97)" }}
         initial={false}
         animate={{ opacity: menuOpen ? 1 : 0, pointerEvents: menuOpen ? "auto" : "none" }}
         transition={{ duration: 0.3 }}
@@ -138,7 +150,8 @@ export function Navbar() {
             >
               <button
                 onClick={() => scrollTo(link.href)}
-                className="font-display font-bold text-white text-4xl"
+                className="font-display font-bold text-4xl"
+                style={{ color: "#FAF8F4" }}
                 data-cursor="hover"
               >
                 {link.label}

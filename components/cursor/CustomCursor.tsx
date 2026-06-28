@@ -51,18 +51,45 @@ export function CustomCursor() {
     <>
       {/* Dot */}
       <motion.div
-        className="fixed top-0 left-0 w-2 h-2 rounded-full bg-accent pointer-events-none z-[99999] mix-blend-difference"
-        style={{ x: dotX, y: dotY, translateX: "-50%", translateY: "-50%" }}
+        style={{
+          position: "fixed",
+          top: 0,
+          left: 0,
+          width: "8px",
+          height: "8px",
+          borderRadius: "50%",
+          background: "#13294B",
+          pointerEvents: "none",
+          zIndex: 99999,
+          x: dotX,
+          y: dotY,
+          translateX: "-50%",
+          translateY: "-50%",
+        }}
       />
       {/* Ring */}
       <motion.div
-        className="fixed top-0 left-0 pointer-events-none z-[99998] flex items-center justify-center rounded-full border border-accent/60"
-        style={{ x: ringX, y: ringY, translateX: "-50%", translateY: "-50%" }}
+        style={{
+          position: "fixed",
+          top: 0,
+          left: 0,
+          pointerEvents: "none",
+          zIndex: 99998,
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+          borderRadius: "50%",
+          border: "1.5px solid rgba(200,144,42,0.7)",
+          x: ringX,
+          y: ringY,
+          translateX: "-50%",
+          translateY: "-50%",
+        }}
         animate={{ width: isHovering ? 56 : 36, height: isHovering ? 56 : 36 }}
         transition={{ duration: 0.2, ease: "easeOut" }}
       >
         {cursorLabel && (
-          <span className="text-accent text-[9px] font-medium tracking-wider uppercase select-none">
+          <span style={{ color: "#A8761F", fontSize: "9px", fontWeight: 500, letterSpacing: "0.08em", textTransform: "uppercase", userSelect: "none" }}>
             {cursorLabel}
           </span>
         )}

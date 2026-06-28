@@ -16,7 +16,6 @@ export function Preloader({ onComplete }: PreloaderProps) {
   onCompleteRef.current          = onComplete;
 
   useEffect(() => {
-    // Skip the preloader if already shown this session
     if (sessionStorage.getItem("ks-preloader")) {
       setSkip(true);
       onCompleteRef.current();
@@ -50,7 +49,6 @@ export function Preloader({ onComplete }: PreloaderProps) {
     return () => clearInterval(id);
   }, [shouldReduce]);
 
-  // Already shown — render nothing
   if (skip) return null;
 
   return (
@@ -61,7 +59,7 @@ export function Preloader({ onComplete }: PreloaderProps) {
             position: "fixed",
             inset: 0,
             zIndex: 99999,
-            backgroundColor: "#0A0906",
+            backgroundColor: "#13294B",
             display: "flex",
             flexDirection: "column",
             alignItems: "center",
@@ -79,7 +77,7 @@ export function Preloader({ onComplete }: PreloaderProps) {
             {[0, 1, 2, 3, 4].map((i) => (
               <motion.div
                 key={i}
-                style={{ flex: 1, backgroundColor: "#141210", transformOrigin: "bottom" }}
+                style={{ flex: 1, backgroundColor: "#0F2A43", transformOrigin: "bottom" }}
                 variants={{
                   exit: {
                     scaleY: 0,
@@ -93,8 +91,8 @@ export function Preloader({ onComplete }: PreloaderProps) {
           {/* Name */}
           <div style={{ position: "relative", zIndex: 10, overflow: "hidden" }}>
             <motion.h1
-              className="font-display font-bold text-white"
-              style={{ fontSize: "clamp(3rem, 10vw, 7rem)", lineHeight: 1 }}
+              className="font-display font-bold"
+              style={{ fontSize: "clamp(3rem, 10vw, 7rem)", lineHeight: 1, color: "#FAF8F4" }}
               initial={{ y: "110%" }}
               animate={{ y: "0%" }}
               transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
@@ -105,7 +103,7 @@ export function Preloader({ onComplete }: PreloaderProps) {
 
           {/* Role */}
           <motion.p
-            style={{ position: "relative", zIndex: 10, color: "#A8956E", fontSize: "0.75rem", letterSpacing: "0.25em", textTransform: "uppercase", marginTop: "16px" }}
+            style={{ position: "relative", zIndex: 10, color: "rgba(200,144,42,0.85)", fontSize: "0.75rem", letterSpacing: "0.25em", textTransform: "uppercase", marginTop: "16px" }}
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 0.5, duration: 0.6 }}
@@ -120,14 +118,14 @@ export function Preloader({ onComplete }: PreloaderProps) {
             animate={{ opacity: 1 }}
             transition={{ delay: 0.3 }}
           >
-            <div style={{ width: "180px", height: "1px", backgroundColor: "#1E1B17", position: "relative", overflow: "hidden" }}>
+            <div style={{ width: "180px", height: "1px", backgroundColor: "rgba(255,255,255,0.1)", position: "relative", overflow: "hidden" }}>
               <motion.div
-                style={{ position: "absolute", inset: 0, backgroundColor: "#F59E0B", transformOrigin: "left" }}
+                style={{ position: "absolute", inset: 0, backgroundColor: "#C8902A", transformOrigin: "left" }}
                 animate={{ scaleX: progress / 100 }}
                 transition={{ duration: 0.15 }}
               />
             </div>
-            <span className="font-display font-bold" style={{ color: "#F59E0B", fontSize: "0.7rem", letterSpacing: "0.3em" }}>
+            <span className="font-display font-bold" style={{ color: "#C8902A", fontSize: "0.7rem", letterSpacing: "0.3em" }}>
               {String(progress).padStart(3, "0")}
             </span>
           </motion.div>

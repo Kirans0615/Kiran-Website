@@ -14,10 +14,10 @@ export function DeviceToggle({ mode, onChange }: DeviceToggleProps) {
         display: "flex",
         alignItems: "center",
         gap: "2px",
-        background: "#141210",
+        background: "#F2EDE4",
         borderRadius: "999px",
         padding: "3px",
-        border: "1px solid rgba(245,158,11,0.15)",
+        border: "1px solid #E2DACD",
       }}
     >
       {(["desktop", "mobile"] as const).map((m) => {
@@ -34,8 +34,8 @@ export function DeviceToggle({ mode, onChange }: DeviceToggleProps) {
               height: "28px",
               borderRadius: "999px",
               border: "none",
-              background: active ? "#F59E0B" : "transparent",
-              color: active ? "#0A0906" : "#6B5F4A",
+              background: active ? "#13294B" : "transparent",
+              color: active ? "#FAF8F4" : "#4A5568",
               transition: "all 0.2s ease",
               cursor: "none",
             }}

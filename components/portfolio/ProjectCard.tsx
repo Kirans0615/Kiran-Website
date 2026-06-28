@@ -8,9 +8,9 @@ import { DeviceToggle } from "./DeviceToggle";
 import type { Project } from "@/lib/projects";
 
 const CAT_STYLES: Record<string, { bg: string; color: string; border: string }> = {
-  SaaS:       { bg: "rgba(124,58,237,0.15)", color: "#c4b5fd", border: "rgba(124,58,237,0.3)" },
-  Business:   { bg: "rgba(245,158,11,0.15)", color: "#fcd34d", border: "rgba(245,158,11,0.3)" },
-  Nonprofit:  { bg: "rgba(16,185,129,0.15)", color: "#6ee7b7", border: "rgba(16,185,129,0.3)" },
+  SaaS:      { bg: "rgba(19,41,75,0.08)",  color: "#13294B",  border: "rgba(19,41,75,0.2)"   },
+  Business:  { bg: "rgba(200,144,42,0.1)", color: "#A8761F",  border: "rgba(200,144,42,0.3)" },
+  Nonprofit: { bg: "rgba(16,185,129,0.1)", color: "#0d7a5f",  border: "rgba(16,185,129,0.3)" },
 };
 
 export function ProjectCard({ project, index }: { project: Project; index: number }) {
@@ -27,8 +27,8 @@ export function ProjectCard({ project, index }: { project: Project; index: numbe
   const onMove = (e: React.MouseEvent) => {
     if (shouldReduce || !cardRef.current) return;
     const r = cardRef.current.getBoundingClientRect();
-    rotY.set(((e.clientX - r.left - r.width  / 2) / r.width)  * 10);
-    rotX.set(-((e.clientY - r.top  - r.height / 2) / r.height) * 10);
+    rotY.set(((e.clientX - r.left - r.width  / 2) / r.width)  * 8);
+    rotX.set(-((e.clientY - r.top  - r.height / 2) / r.height) * 8);
   };
 
   const onLeave = () => { rotX.set(0); rotY.set(0); setHovered(false); };
@@ -49,18 +49,18 @@ export function ProjectCard({ project, index }: { project: Project; index: numbe
           rotateX: sRotX,
           rotateY: sRotY,
           transformStyle: "preserve-3d" as const,
-          background: "#141210",
-          borderColor: hovered ? "rgba(245,158,11,0.25)" : "rgba(245,158,11,0.08)",
+          background: "#FFFFFF",
+          borderColor: hovered ? "rgba(200,144,42,0.35)" : "#E2DACD",
         }}
         onMouseMove={onMove}
         onMouseEnter={() => setHovered(true)}
         onMouseLeave={onLeave}
-        whileHover={shouldReduce ? {} : { y: -10 }}
+        whileHover={shouldReduce ? {} : { y: -8 }}
         transition={{ duration: 0.3 }}
         className="relative rounded-2xl overflow-hidden border transition-colors duration-500"
         data-cursor="View"
       >
-        {/* Glow */}
+        {/* Hover shadow */}
         <div
           style={{
             position: "absolute",
@@ -69,7 +69,7 @@ export function ProjectCard({ project, index }: { project: Project; index: numbe
             pointerEvents: "none",
             opacity: hovered ? 1 : 0,
             transition: "opacity 0.5s",
-            boxShadow: "0 0 80px rgba(245,158,11,0.1), inset 0 0 60px rgba(245,158,11,0.04)",
+            boxShadow: "0 16px 48px rgba(19,41,75,0.1), inset 0 0 0 1px rgba(200,144,42,0.12)",
           }}
         />
 
@@ -80,16 +80,12 @@ export function ProjectCard({ project, index }: { project: Project; index: numbe
             alignItems: "center",
             justifyContent: "space-between",
             padding: "16px 20px",
+            background: "#FAF8F4",
+            borderBottom: "1px solid #E2DACD",
           }}
         >
           <div style={{ display: "flex", alignItems: "center", gap: "10px" }}>
-            <span
-              style={{
-                fontFamily: "monospace",
-                fontSize: "11px",
-                color: "#6B5F4A",
-              }}
-            >
+            <span style={{ fontFamily: "monospace", fontSize: "11px", color: "#6B7280" }}>
               {project.num}
             </span>
             <span
@@ -110,7 +106,7 @@ export function ProjectCard({ project, index }: { project: Project; index: numbe
         </div>
 
         {/* Browser frame */}
-        <div style={{ padding: "0 16px" }}>
+        <div style={{ padding: "0 16px", background: "#F2EDE4" }}>
           <BrowserFrame url={project.url} title={project.title} deviceMode={device} />
         </div>
 
@@ -121,13 +117,14 @@ export function ProjectCard({ project, index }: { project: Project; index: numbe
             alignItems: "flex-end",
             justifyContent: "space-between",
             padding: "16px 20px 20px",
+            background: "#FFFFFF",
           }}
         >
           <div style={{ flex: 1, minWidth: 0 }}>
             <h3
               className="font-display font-semibold"
               style={{
-                color: hovered ? "#FBBF24" : "#ffffff",
+                color: hovered ? "#C8902A" : "#13294B",
                 fontSize: "1.1rem",
                 marginBottom: "4px",
                 transition: "color 0.3s",
@@ -135,7 +132,7 @@ export function ProjectCard({ project, index }: { project: Project; index: numbe
             >
               {project.title}
             </h3>
-            <p style={{ color: "#A8956E", fontSize: "0.8rem", lineHeight: 1.5 }}>
+            <p style={{ color: "#4A5568", fontSize: "0.82rem", lineHeight: 1.5 }}>
               {project.description}
             </p>
             <div style={{ display: "flex", gap: "6px", flexWrap: "wrap", marginTop: "8px" }}>
@@ -144,10 +141,11 @@ export function ProjectCard({ project, index }: { project: Project; index: numbe
                   key={t}
                   style={{
                     fontSize: "10px",
-                    color: "#6B5F4A",
-                    border: "1px solid rgba(245,158,11,0.1)",
+                    color: "#4A5568",
+                    border: "1px solid #E2DACD",
                     borderRadius: "4px",
                     padding: "1px 6px",
+                    background: "#FAF8F4",
                   }}
                 >
                   {t}
@@ -168,13 +166,14 @@ export function ProjectCard({ project, index }: { project: Project; index: numbe
               width: "40px",
               height: "40px",
               borderRadius: "50%",
-              border: "1px solid rgba(245,158,11,0.35)",
+              border: "1px solid rgba(200,144,42,0.4)",
               display: "flex",
               alignItems: "center",
               justifyContent: "center",
-              color: "#F59E0B",
+              color: "#C8902A",
               transition: "all 0.3s",
               textDecoration: "none",
+              background: "rgba(200,144,42,0.06)",
             }}
           >
             <ExternalLink style={{ width: "15px", height: "15px" }} />

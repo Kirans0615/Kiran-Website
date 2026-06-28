@@ -15,7 +15,7 @@ export function PortfolioSection() {
   const filtered = cat === "All" ? PROJECTS : PROJECTS.filter((p) => p.category === cat);
 
   return (
-    <section id="portfolio" className="py-32 px-6">
+    <section id="portfolio" className="py-32 px-6" style={{ background: "#FAF8F4" }}>
       <div className="max-w-7xl mx-auto">
         <SectionHeading label="Selected Work" title="The Portfolio" />
 
@@ -47,9 +47,9 @@ export function PortfolioSection() {
                     border: "1px solid",
                     transition: "all 0.3s",
                     cursor: "none",
-                    background: active ? "#F59E0B" : "transparent",
-                    color: active ? "#0A0906" : "#A8956E",
-                    borderColor: active ? "#F59E0B" : "rgba(245,158,11,0.2)",
+                    background: active ? "#13294B" : "transparent",
+                    color: active ? "#FAF8F4" : "#4A5568",
+                    borderColor: active ? "#13294B" : "#E2DACD",
                   }}
                 >
                   {c}
@@ -63,10 +63,10 @@ export function PortfolioSection() {
             style={{
               display: "flex",
               gap: "2px",
-              background: "#141210",
+              background: "#F2EDE4",
               borderRadius: "999px",
               padding: "3px",
-              border: "1px solid rgba(245,158,11,0.12)",
+              border: "1px solid #E2DACD",
             }}
           >
             {([
@@ -84,8 +84,8 @@ export function PortfolioSection() {
                     padding: "6px 8px",
                     borderRadius: "999px",
                     border: "none",
-                    background: active ? "#F59E0B" : "transparent",
-                    color: active ? "#0A0906" : "#6B5F4A",
+                    background: active ? "#13294B" : "transparent",
+                    color: active ? "#FAF8F4" : "#4A5568",
                     transition: "all 0.2s",
                     cursor: "none",
                     display: "flex",

@@ -37,18 +37,18 @@ export function MeshBackground() {
       ctx.clearRect(0, 0, canvas.width, canvas.height);
 
       const orbs = [
-        { cx: 0.18 + Math.sin(t) * 0.12 + mx * 0.08,  cy: 0.28 + Math.cos(t * 0.7) * 0.1,  r: 0.42, a: 0.11 },
-        { cx: 0.82 + Math.cos(t * 0.9) * 0.08 - mx * 0.06, cy: 0.55 + Math.sin(t * 1.1) * 0.12, r: 0.35, a: 0.07 },
-        { cx: 0.5  + Math.sin(t * 1.3) * 0.07,         cy: 0.85 - my * 0.1,                 r: 0.28, a: 0.05 },
+        { cx: 0.18 + Math.sin(t) * 0.12 + mx * 0.08,  cy: 0.28 + Math.cos(t * 0.7) * 0.1,  r: 0.42, a: 0.06 },
+        { cx: 0.82 + Math.cos(t * 0.9) * 0.08 - mx * 0.06, cy: 0.55 + Math.sin(t * 1.1) * 0.12, r: 0.35, a: 0.04 },
+        { cx: 0.5  + Math.sin(t * 1.3) * 0.07,         cy: 0.85 - my * 0.1,                 r: 0.28, a: 0.03 },
       ];
 
       orbs.forEach(({ cx, cy, r, a }) => {
         const grad = ctx.createRadialGradient(
           cx * canvas.width, cy * canvas.height, 0,
-          cx * canvas.width, cy * canvas.height, r  * canvas.width,
+          cx * canvas.width, cy * canvas.height, r * canvas.width,
         );
-        grad.addColorStop(0, `rgba(245,158,11,${a})`);
-        grad.addColorStop(1, "rgba(245,158,11,0)");
+        grad.addColorStop(0, `rgba(19,41,75,${a})`);
+        grad.addColorStop(1, "rgba(19,41,75,0)");
         ctx.fillStyle = grad;
         ctx.fillRect(0, 0, canvas.width, canvas.height);
       });
@@ -69,7 +69,7 @@ export function MeshBackground() {
     return (
       <div
         className="absolute inset-0 pointer-events-none"
-        style={{ background: "radial-gradient(ellipse at 20% 30%, rgba(245,158,11,0.08) 0%, transparent 60%)" }}
+        style={{ background: "radial-gradient(ellipse at 20% 30%, rgba(19,41,75,0.05) 0%, transparent 60%)" }}
       />
     );
   }

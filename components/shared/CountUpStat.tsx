@@ -41,10 +41,10 @@ export function CountUpStat({
 
   return (
     <div ref={ref} className="text-center">
-      <div className="font-display text-4xl md:text-5xl font-bold text-white mb-2">
+      <div className="font-display text-4xl md:text-5xl font-bold mb-2" style={{ color: "#13294B" }}>
         {prefix}{count}{suffix}
       </div>
-      <div className="text-muted-2 text-xs tracking-widest uppercase">{label}</div>
+      <div className="text-xs tracking-widest uppercase" style={{ color: "#4A5568" }}>{label}</div>
     </div>
   );
 }

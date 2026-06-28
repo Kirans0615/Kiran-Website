@@ -22,7 +22,7 @@ export function AboutSection() {
   const shouldReduce = useReducedMotion();
 
   return (
-    <section id="about" style={{ padding: "8rem 1.5rem" }}>
+    <section id="about" style={{ padding: "8rem 1.5rem", background: "#FAF8F4" }}>
       <div className="max-w-7xl mx-auto">
         <SectionHeading label="The Designer" title="About Kiran" />
 
@@ -47,9 +47,9 @@ export function AboutSection() {
                 aspectRatio: "4 / 5",
                 borderRadius: "20px",
                 overflow: "hidden",
-                border: "1px solid rgba(245,158,11,0.2)",
+                border: "1px solid #E2DACD",
                 position: "relative",
-                boxShadow: "0 0 60px rgba(245,158,11,0.08)",
+                boxShadow: "0 8px 40px rgba(19,41,75,0.1)",
               }}
             >
               {/* eslint-disable-next-line @next/next/no-img-element */}
@@ -65,7 +65,7 @@ export function AboutSection() {
                 }}
               />
 
-              {/* Amber overlay gradient at bottom */}
+              {/* Warm gradient at bottom */}
               <div
                 style={{
                   position: "absolute",
@@ -73,18 +73,18 @@ export function AboutSection() {
                   left: 0,
                   right: 0,
                   height: "35%",
-                  background: "linear-gradient(to top, rgba(10,9,6,0.75), transparent)",
+                  background: "linear-gradient(to top, rgba(250,248,244,0.6), transparent)",
                   pointerEvents: "none",
                 }}
               />
 
-              {/* Subtle amber border glow inset */}
+              {/* Inset border */}
               <div
                 style={{
                   position: "absolute",
                   inset: 0,
                   borderRadius: "20px",
-                  boxShadow: "inset 0 0 0 1px rgba(245,158,11,0.15)",
+                  boxShadow: "inset 0 0 0 1px rgba(19,41,75,0.08)",
                   pointerEvents: "none",
                 }}
               />
@@ -96,11 +96,11 @@ export function AboutSection() {
                 position: "absolute",
                 bottom: "-16px",
                 right: "-16px",
-                background: "#F59E0B",
-                color: "#0A0906",
+                background: "#13294B",
+                color: "#FAF8F4",
                 borderRadius: "16px",
                 padding: "12px 20px",
-                boxShadow: "0 8px 32px rgba(245,158,11,0.25)",
+                boxShadow: "0 8px 32px rgba(19,41,75,0.25)",
               }}
               initial={shouldReduce ? {} : { scale: 0, rotate: -12 }}
               whileInView={{ scale: 1, rotate: -4 }}
@@ -108,7 +108,7 @@ export function AboutSection() {
               transition={{ duration: 0.5, delay: 0.4, type: "spring", stiffness: 200 }}
             >
               <div className="font-display font-bold" style={{ fontSize: "1.4rem" }}>GWU</div>
-              <div style={{ fontSize: "10px", fontWeight: 500, opacity: 0.7, marginTop: "2px" }}>
+              <div style={{ fontSize: "10px", fontWeight: 500, opacity: 0.65, marginTop: "2px" }}>
                 Washington, D.C.
               </div>
             </motion.div>
@@ -122,8 +122,7 @@ export function AboutSection() {
                   key={i}
                   text={line}
                   as="p"
-                  className="text-muted leading-relaxed"
-                  style={{ fontSize: "0.97rem" }}
+                  style={{ color: "#4A5568", fontSize: "0.97rem", lineHeight: "1.75" }}
                   delay={i * 0.12}
                   stagger={0.022}
                 />
@@ -137,7 +136,7 @@ export function AboutSection() {
                 gridTemplateColumns: "repeat(2, 1fr)",
                 gap: "24px",
                 paddingTop: "28px",
-                borderTop: "1px solid rgba(245,158,11,0.1)",
+                borderTop: "1px solid #E2DACD",
               }}
             >
               {STATS.map((s) => (
@@ -164,7 +163,7 @@ export function AboutSection() {
                   animation: "pulse 2s infinite",
                 }}
               />
-              <span style={{ color: "#A8956E", fontSize: "0.82rem" }}>
+              <span style={{ color: "#4A5568", fontSize: "0.82rem" }}>
                 Available for new projects
               </span>
             </motion.div>

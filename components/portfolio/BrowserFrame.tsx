@@ -23,7 +23,6 @@ export function BrowserFrame({ url, title, deviceMode }: BrowserFrameProps) {
   const timeoutRef                = useRef<ReturnType<typeof setTimeout> | undefined>(undefined);
   const iframeKey                 = useRef(0);
 
-  // Reset when url changes
   useEffect(() => {
     clearTimeout(timeoutRef.current);
     iframeKey.current += 1;
@@ -37,28 +36,27 @@ export function BrowserFrame({ url, title, deviceMode }: BrowserFrameProps) {
   }, [mode, url]);
 
   const displayUrl = url.replace(/^https?:\/\//, "").replace(/\/$/, "");
-
   const viewportH = deviceMode === "mobile" ? 460 : 360;
 
   return (
     <div
       style={{
         width: "100%",
-        background: "#1E1B17",
+        background: "#F2EDE4",
         borderRadius: "12px",
         overflow: "hidden",
-        border: "1px solid rgba(245,158,11,0.1)",
+        border: "1px solid #E2DACD",
       }}
     >
       {/* Browser chrome */}
       <div
         style={{
-          background: "#141210",
+          background: "#E8E0D4",
           padding: "10px 14px",
           display: "flex",
           alignItems: "center",
           gap: "10px",
-          borderBottom: "1px solid rgba(245,158,11,0.07)",
+          borderBottom: "1px solid #E2DACD",
         }}
       >
         {/* Traffic lights */}
@@ -74,19 +72,20 @@ export function BrowserFrame({ url, title, deviceMode }: BrowserFrameProps) {
             display: "flex",
             alignItems: "center",
             gap: "6px",
-            background: "rgba(10,9,6,0.5)",
+            background: "rgba(250,248,244,0.8)",
             borderRadius: "6px",
             padding: "4px 10px",
+            border: "1px solid #E2DACD",
           }}
         >
           {/* Lock icon */}
-          <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="#6B5F4A" strokeWidth="2.5">
+          <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="#4A5568" strokeWidth="2.5">
             <rect x="3" y="11" width="18" height="11" rx="2" />
             <path d="M7 11V7a5 5 0 0110 0v4" />
           </svg>
           <span
             style={{
-              color: "#6B5F4A",
+              color: "#4A5568",
               fontSize: "11px",
               fontFamily: "monospace",
               overflow: "hidden",
@@ -159,15 +158,15 @@ export function BrowserFrame({ url, title, deviceMode }: BrowserFrameProps) {
               flexDirection: "column",
               alignItems: "center",
               justifyContent: "center",
-              background: "#141210",
+              background: "#F2EDE4",
             }}
           >
-            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#F59E0B" strokeWidth="1.5">
+            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#C8902A" strokeWidth="1.5">
               <circle cx="12" cy="12" r="10" />
               <line x1="2" y1="12" x2="22" y2="12" />
               <path d="M12 2a15.3 15.3 0 014 10 15.3 15.3 0 01-4 10 15.3 15.3 0 01-4-10 15.3 15.3 0 014-10z" />
             </svg>
-            <p style={{ color: "#6B5F4A", fontSize: "11px", marginTop: "10px" }}>
+            <p style={{ color: "#4A5568", fontSize: "11px", marginTop: "10px" }}>
               Visit the live site →
             </p>
           </div>
