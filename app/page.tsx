@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion } from "framer-motion";
 import { Preloader } from "@/components/preloader/Preloader";
 import { ScrollProgress } from "@/components/shared/ScrollProgress";
 import { Navbar } from "@/components/nav/Navbar";
@@ -20,27 +20,24 @@ export default function Home() {
     <>
       <Preloader onComplete={() => setReady(true)} />
 
-      <AnimatePresence>
-        {ready && (
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 0.6, ease: "easeOut" }}
-          >
-            <ScrollProgress />
-            <Navbar />
-            <main>
-              <Hero />
-              <MarqueeTicker />
-              <PortfolioSection />
-              <SkillsSection />
-              <AboutSection />
-              <ContactSection />
-            </main>
-            <Footer />
-          </motion.div>
-        )}
-      </AnimatePresence>
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: ready ? 1 : 0 }}
+        transition={{ duration: 0.5, ease: "easeOut" }}
+        style={{ pointerEvents: ready ? "auto" : "none" }}
+      >
+        <ScrollProgress />
+        <Navbar />
+        <main>
+          <Hero />
+          <MarqueeTicker />
+          <PortfolioSection />
+          <SkillsSection />
+          <AboutSection />
+          <ContactSection />
+        </main>
+        <Footer />
+      </motion.div>
     </>
   );
 }

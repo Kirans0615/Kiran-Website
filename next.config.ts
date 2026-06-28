@@ -1,12 +1,15 @@
 import type { NextConfig } from "next";
 import path from "path";
 
-const isProd = process.env.NODE_ENV === "production";
+// Only set static export when building for GitHub Pages
+const isGHPages = process.env.GITHUB_PAGES === "true";
 
 const nextConfig: NextConfig = {
-  output: "export",
-  basePath: isProd ? "/Kiran-Website" : "",
-  assetPrefix: isProd ? "/Kiran-Website/" : "",
+  ...(isGHPages && {
+    output: "export",
+    basePath: "/Kiran-Website",
+    assetPrefix: "/Kiran-Website/",
+  }),
   turbopack: {
     root: path.join(__dirname),
   },
