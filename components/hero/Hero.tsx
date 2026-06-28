@@ -4,8 +4,13 @@ import { useRef } from "react";
 import { motion, useReducedMotion, useScroll, useTransform } from "framer-motion";
 import { useInView } from "react-intersection-observer";
 import { MeshBackground } from "./MeshBackground";
+import { FloatingCode } from "./FloatingCode";
+import { TextScramble } from "./TextScramble";
+import { SkillTypewriter } from "./SkillTypewriter";
 import { MagneticButton } from "@/components/shared/MagneticButton";
 import { ChevronDown } from "lucide-react";
+
+const TECH_PILLS = ["Next.js 16", "TypeScript", "Tailwind v4", "Framer Motion", "Lenis"];
 
 const HEADLINE_WORDS = [
   { word: "Websites", accent: false },
@@ -14,137 +19,248 @@ const HEADLINE_WORDS = [
   { word: "Clients.", accent: true  },
 ];
 
-export function Hero() {
-  const shouldReduce            = useReducedMotion();
-  const { ref: inViewRef, inView } = useInView({ triggerOnce: true, threshold: 0.05 });
-  const sectionRef              = useRef<HTMLElement>(null);
-  const { scrollY }             = useScroll();
-  const parallaxY               = useTransform(scrollY, [0, 700], [0, shouldReduce ? 0 : 100]);
+function PerspectiveGrid() {
+  return (
+    <div
+      aria-hidden="true"
+      style={{
+        position: "absolute",
+        bottom: 0,
+        left: 0,
+        right: 0,
+        height: "320px",
+        overflow: "hidden",
+        pointerEvents: "none",
+        maskImage: "linear-gradient(to top, rgba(0,0,0,0.5) 0%, transparent 100%)",
+        WebkitMaskImage: "linear-gradient(to top, rgba(0,0,0,0.5) 0%, transparent 100%)",
+      }}
+    >
+      <svg
+        viewBox="0 0 1440 320"
+        preserveAspectRatio="none"
+        style={{ width: "100%", height: "100%" }}
+      >
+        {/* Horizontal lines converging to vanishing point */}
+        {[0.1, 0.2, 0.3, 0.4, 0.55, 0.7, 0.85, 1].map((t, i) => {
+          const y = 320 * (1 - Math.pow(1 - t, 2));
+          const xLeft  = 720 - 720 * t;
+          const xRight = 720 + 720 * t;
+          return (
+            <line
+              key={`h${i}`}
+              x1={xLeft} y1={y}
+              x2={xRight} y2={y}
+              stroke="rgba(245,158,11,0.12)"
+              strokeWidth={0.5}
+            />
+          );
+        })}
+        {/* Vertical lines radiating from VP */}
+        {[-6,-5,-4,-3,-2,-1,0,1,2,3,4,5,6].map((n, i) => (
+          <line
+            key={`v${i}`}
+            x1={720} y1={0}
+            x2={720 + n * 120} y2={320}
+            stroke="rgba(245,158,11,0.08)"
+            strokeWidth={0.5}
+          />
+        ))}
+        {/* Horizon glow */}
+        <ellipse cx="720" cy="0" rx="340" ry="18" fill="rgba(245,158,11,0.07)" />
+      </svg>
+    </div>
+  );
+}
 
-  const scrollTo = (id: string) => {
+export function Hero() {
+  const shouldReduce = useReducedMotion();
+  const { ref: inViewRef, inView } = useInView({ triggerOnce: true, threshold: 0.05 });
+  const sectionRef = useRef<HTMLElement>(null);
+  const { scrollY } = useScroll();
+  const parallaxY = useTransform(scrollY, [0, 700], [0, shouldReduce ? 0 : 100]);
+
+  const scrollTo = (id: string) =>
     document.querySelector(id)?.scrollIntoView({ behavior: shouldReduce ? "auto" : "smooth" });
-  };
 
   return (
     <section
       ref={sectionRef}
       id="hero"
-      className="relative min-h-screen flex flex-col justify-center overflow-hidden"
+      style={{ position: "relative", minHeight: "100vh", display: "flex", flexDirection: "column", justifyContent: "center", overflow: "hidden" }}
     >
+      {/* Layers: mesh → grid lines → floating code → perspective grid */}
       <MeshBackground />
 
-      {/* Grid lines decorative */}
+      {/* Subtle dot-grid overlay */}
       <div
-        className="absolute inset-0 pointer-events-none opacity-[0.025]"
+        aria-hidden="true"
         style={{
-          backgroundImage: `linear-gradient(rgba(245,158,11,1) 1px, transparent 1px),
-                            linear-gradient(90deg, rgba(245,158,11,1) 1px, transparent 1px)`,
-          backgroundSize: "80px 80px",
+          position: "absolute",
+          inset: 0,
+          pointerEvents: "none",
+          backgroundImage: "radial-gradient(circle, rgba(245,158,11,0.12) 1px, transparent 1px)",
+          backgroundSize: "40px 40px",
+          maskImage: "radial-gradient(ellipse 80% 60% at 50% 50%, black 20%, transparent 100%)",
+          WebkitMaskImage: "radial-gradient(ellipse 80% 60% at 50% 50%, black 20%, transparent 100%)",
         }}
       />
 
+      <FloatingCode />
+      <PerspectiveGrid />
+
+      {/* Main content */}
       <motion.div
         ref={inViewRef}
-        className="relative z-10 max-w-7xl mx-auto px-6 pt-36 pb-28 w-full"
-        style={{ y: parallaxY }}
+        style={{ y: parallaxY, position: "relative", zIndex: 10, maxWidth: "1280px", margin: "0 auto", padding: "9rem 1.5rem 6rem", width: "100%" }}
       >
-        {/* Label */}
+        {/* Terminal-style label with scramble */}
         <motion.div
-          className="flex items-center gap-3 mb-12"
+          style={{ display: "flex", alignItems: "center", gap: "12px", marginBottom: "2.5rem" }}
           initial={shouldReduce ? {} : { opacity: 0, y: 16 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
         >
-          <span style={{ width: "2rem", height: "1px", backgroundColor: "#F59E0B", display: "block" }} />
-          <span
-            className="font-medium"
-            style={{ color: "#F59E0B", fontSize: "0.75rem", letterSpacing: "0.25em", textTransform: "uppercase" }}
-          >
-            Web Designer & Developer
+          {/* Terminal dot cluster */}
+          <span style={{ display: "flex", gap: "5px", alignItems: "center" }}>
+            <span style={{ width: 8, height: 8, borderRadius: "50%", background: "#FF5F57", display: "inline-block" }} />
+            <span style={{ width: 8, height: 8, borderRadius: "50%", background: "#FFBD2E", display: "inline-block" }} />
+            <span style={{ width: 8, height: 8, borderRadius: "50%", background: "#28CA41", display: "inline-block" }} />
           </span>
+          <span style={{ width: "1px", height: "20px", background: "rgba(245,158,11,0.3)" }} />
+          <TextScramble
+            text="Web Designer & Developer"
+            delay={0.3}
+            style={{ color: "#F59E0B", fontSize: "0.75rem", letterSpacing: "0.22em", textTransform: "uppercase" }}
+          />
         </motion.div>
 
-        {/* Headline */}
+        {/* Main headline */}
         <h1
-          className="font-display font-bold text-white leading-none tracking-tight mb-8"
-          style={{ fontSize: "clamp(3.2rem, 9.5vw, 9rem)" }}
+          className="font-display font-bold text-white"
+          style={{ fontSize: "clamp(3rem, 9.5vw, 9rem)", lineHeight: 0.95, letterSpacing: "-0.02em", marginBottom: "1.5rem" }}
         >
-          <div className="flex flex-wrap">
-            {HEADLINE_WORDS.map(({ word, accent }, i) => (
-              <span
-                key={word}
-                style={{ display: "inline-block", overflow: "hidden", marginRight: "0.18em" }}
+          {HEADLINE_WORDS.map(({ word, accent }, i) => (
+            <span key={word} style={{ display: "inline-block", overflow: "hidden", marginRight: "0.15em" }}>
+              <motion.span
+                style={{ display: "inline-block", color: accent ? "#F59E0B" : "#fff" }}
+                initial={shouldReduce ? {} : { y: "115%" }}
+                animate={inView ? { y: "0%" } : {}}
+                transition={{ duration: 0.95, delay: 0.15 + i * 0.11, ease: [0.16, 1, 0.3, 1] }}
               >
-                <motion.span
-                  className="inline-block"
-                  style={{ color: accent ? "#F59E0B" : "#fff" }}
-                  initial={shouldReduce ? {} : { y: "115%", opacity: 0 }}
-                  animate={inView ? { y: "0%", opacity: 1 } : {}}
-                  transition={{
-                    duration: 0.95,
-                    delay: 0.12 + i * 0.1,
-                    ease: [0.16, 1, 0.3, 1],
-                  }}
-                >
-                  {word}
-                </motion.span>
-              </span>
-            ))}
-          </div>
+                {word}
+              </motion.span>
+            </span>
+          ))}
         </h1>
 
-        {/* Sub */}
+        {/* Typewriter skills line */}
+        <motion.div
+          style={{ marginBottom: "1.5rem" }}
+          initial={shouldReduce ? {} : { opacity: 0 }}
+          animate={inView ? { opacity: 1 } : {}}
+          transition={{ delay: 0.7 }}
+        >
+          <SkillTypewriter />
+        </motion.div>
+
+        {/* Sub copy */}
         <motion.p
-          className="text-muted leading-relaxed mb-14 max-w-lg"
-          style={{ fontSize: "1.1rem" }}
-          initial={shouldReduce ? {} : { opacity: 0, y: 18 }}
+          style={{ color: "#A8956E", fontSize: "1.05rem", lineHeight: 1.7, maxWidth: "480px", marginBottom: "3rem" }}
+          initial={shouldReduce ? {} : { opacity: 0, y: 16 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.8, delay: 0.6, ease: [0.16, 1, 0.3, 1] }}
+          transition={{ duration: 0.8, delay: 0.75, ease: [0.16, 1, 0.3, 1] }}
         >
           I build custom, conversion-focused websites that look as good as they perform — for businesses, nonprofits, and SaaS brands.
         </motion.p>
 
+        {/* Tech pills */}
+        <motion.div
+          style={{ display: "flex", flexWrap: "wrap", gap: "8px", marginBottom: "3rem" }}
+          initial={shouldReduce ? {} : { opacity: 0, y: 12 }}
+          animate={inView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.7, delay: 0.85 }}
+        >
+          {TECH_PILLS.map((pill, i) => (
+            <motion.span
+              key={pill}
+              style={{
+                padding: "4px 14px",
+                borderRadius: "999px",
+                border: "1px solid rgba(245,158,11,0.25)",
+                background: "rgba(245,158,11,0.06)",
+                color: "#A8956E",
+                fontSize: "11px",
+                letterSpacing: "0.08em",
+                fontFamily: "monospace",
+                backdropFilter: "blur(8px)",
+              }}
+              initial={shouldReduce ? {} : { opacity: 0, scale: 0.85 }}
+              animate={inView ? { opacity: 1, scale: 1 } : {}}
+              transition={{ duration: 0.4, delay: 0.9 + i * 0.06, ease: [0.16, 1, 0.3, 1] }}
+              whileHover={shouldReduce ? {} : { borderColor: "rgba(245,158,11,0.6)", color: "#F59E0B", y: -2, transition: { duration: 0.2 } }}
+            >
+              {pill}
+            </motion.span>
+          ))}
+        </motion.div>
+
         {/* CTAs */}
         <motion.div
-          className="flex flex-wrap items-center gap-5"
-          initial={shouldReduce ? {} : { opacity: 0, y: 18 }}
+          style={{ display: "flex", flexWrap: "wrap", gap: "16px", alignItems: "center" }}
+          initial={shouldReduce ? {} : { opacity: 0, y: 16 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.8, delay: 0.75, ease: [0.16, 1, 0.3, 1] }}
+          transition={{ duration: 0.8, delay: 1.0, ease: [0.16, 1, 0.3, 1] }}
         >
           <MagneticButton
             onClick={() => scrollTo("#portfolio")}
             data-cursor="View"
-            className="px-8 py-4 font-display font-semibold rounded-full text-sm tracking-wide transition-colors duration-300"
-            style={{ backgroundColor: "#F59E0B", color: "#0A0906" }}
+            className="font-display font-semibold rounded-full text-sm tracking-wide"
+            style={{ padding: "14px 32px", backgroundColor: "#F59E0B", color: "#0A0906", boxShadow: "0 0 40px rgba(245,158,11,0.3)" }}
           >
             View My Work
           </MagneticButton>
           <MagneticButton
             onClick={() => scrollTo("#contact")}
             data-cursor="hover"
-            className="px-8 py-4 font-display font-medium rounded-full text-sm tracking-wide transition-all duration-300"
-            style={{ border: "1px solid rgba(245,158,11,0.3)", color: "#fff" }}
+            className="font-display font-medium rounded-full text-sm tracking-wide"
+            style={{ padding: "14px 32px", border: "1px solid rgba(245,158,11,0.3)", color: "#fff", backdropFilter: "blur(8px)" }}
           >
             Get in Touch
           </MagneticButton>
+
+          {/* Available indicator */}
+          <div style={{ display: "flex", alignItems: "center", gap: "8px", marginLeft: "8px" }}>
+            <span
+              style={{
+                width: "8px",
+                height: "8px",
+                borderRadius: "50%",
+                background: "#10b981",
+                display: "inline-block",
+                boxShadow: "0 0 10px rgba(16,185,129,0.7)",
+                animation: "pulse-dot 2s infinite",
+              }}
+            />
+            <span style={{ color: "#6B5F4A", fontSize: "12px" }}>Available for projects</span>
+          </div>
         </motion.div>
 
         {/* Stats strip */}
         <motion.div
-          className="flex flex-wrap gap-10 mt-20 pt-10"
-          style={{ borderTop: "1px solid rgba(245,158,11,0.1)" }}
+          style={{ display: "flex", flexWrap: "wrap", gap: "40px", marginTop: "72px", paddingTop: "40px", borderTop: "1px solid rgba(245,158,11,0.1)" }}
           initial={shouldReduce ? {} : { opacity: 0 }}
           animate={inView ? { opacity: 1 } : {}}
-          transition={{ duration: 1, delay: 1 }}
+          transition={{ duration: 1, delay: 1.2 }}
         >
           {[
-            { n: "8+", label: "Projects Delivered" },
-            { n: "3+", label: "Years Experience" },
+            { n: "8+",   label: "Projects Delivered" },
+            { n: "3+",   label: "Years Experience"   },
             { n: "100%", label: "Client Satisfaction" },
+            { n: "0",    label: "Templates Used"     },
           ].map(({ n, label }) => (
             <div key={label}>
-              <div className="font-display font-bold text-white text-2xl">{n}</div>
-              <div style={{ color: "#6B5F4A", fontSize: "0.7rem", letterSpacing: "0.15em", textTransform: "uppercase", marginTop: "2px" }}>
+              <div className="font-display font-bold text-white" style={{ fontSize: "1.8rem", lineHeight: 1 }}>{n}</div>
+              <div style={{ color: "#6B5F4A", fontSize: "0.65rem", letterSpacing: "0.18em", textTransform: "uppercase", marginTop: "4px" }}>
                 {label}
               </div>
             </div>
@@ -154,22 +270,26 @@ export function Hero() {
 
       {/* Scroll indicator */}
       <motion.div
-        className="absolute bottom-8 left-1/2 flex flex-col items-center gap-2"
-        style={{ transform: "translateX(-50%)", color: "#6B5F4A" }}
+        style={{ position: "absolute", bottom: "28px", left: "50%", transform: "translateX(-50%)", display: "flex", flexDirection: "column", alignItems: "center", gap: "6px", color: "#6B5F4A", zIndex: 10 }}
         initial={shouldReduce ? {} : { opacity: 0 }}
         animate={inView ? { opacity: 1 } : {}}
-        transition={{ delay: 1.3 }}
+        transition={{ delay: 1.5 }}
       >
-        <span style={{ fontSize: "0.65rem", letterSpacing: "0.25em", textTransform: "uppercase" }}>
-          Scroll
-        </span>
+        <span style={{ fontSize: "0.6rem", letterSpacing: "0.28em", textTransform: "uppercase" }}>Scroll</span>
         <motion.div
           animate={shouldReduce ? {} : { y: [0, 7, 0] }}
           transition={{ duration: 1.6, repeat: Infinity, ease: "easeInOut" }}
         >
-          <ChevronDown style={{ width: "1rem", height: "1rem", color: "#F59E0B" }} />
+          <ChevronDown style={{ width: "14px", height: "14px", color: "#F59E0B" }} />
         </motion.div>
       </motion.div>
+
+      <style>{`
+        @keyframes pulse-dot {
+          0%,100% { opacity:1; transform:scale(1); }
+          50%      { opacity:0.5; transform:scale(0.8); }
+        }
+      `}</style>
     </section>
   );
 }

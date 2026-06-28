@@ -47,48 +47,44 @@ export function AboutSection() {
                 aspectRatio: "4 / 5",
                 borderRadius: "20px",
                 overflow: "hidden",
-                background: "linear-gradient(135deg, rgba(120,70,20,0.3) 0%, #141210 50%, rgba(100,60,10,0.2) 100%)",
-                border: "1px solid rgba(245,158,11,0.1)",
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "center",
+                border: "1px solid rgba(245,158,11,0.2)",
+                position: "relative",
+                boxShadow: "0 0 60px rgba(245,158,11,0.08)",
               }}
             >
-              <div style={{ textAlign: "center" }}>
-                <div
-                  style={{
-                    width: "96px",
-                    height: "96px",
-                    borderRadius: "50%",
-                    background: "rgba(245,158,11,0.15)",
-                    border: "2px solid rgba(245,158,11,0.35)",
-                    display: "flex",
-                    alignItems: "center",
-                    justifyContent: "center",
-                    margin: "0 auto 16px",
-                  }}
-                >
-                  <span
-                    className="font-display font-bold"
-                    style={{ fontSize: "2.5rem", color: "#F59E0B" }}
-                  >
-                    KS
-                  </span>
-                </div>
-                <p style={{ color: "#6B5F4A", fontSize: "12px", letterSpacing: "0.1em" }}>
-                  Portrait coming soon
-                </p>
-              </div>
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img
+                src="https://raw.githubusercontent.com/Kirans0615/Kiran-Website/main/kiranhead.jpg"
+                alt="Kiran Sen"
+                style={{
+                  width: "100%",
+                  height: "100%",
+                  objectFit: "cover",
+                  objectPosition: "center top",
+                  display: "block",
+                }}
+              />
 
-              {/* Bottom gradient */}
+              {/* Amber overlay gradient at bottom */}
               <div
                 style={{
                   position: "absolute",
                   bottom: 0,
                   left: 0,
                   right: 0,
-                  height: "40%",
-                  background: "linear-gradient(to top, rgba(10,9,6,0.5), transparent)",
+                  height: "35%",
+                  background: "linear-gradient(to top, rgba(10,9,6,0.75), transparent)",
+                  pointerEvents: "none",
+                }}
+              />
+
+              {/* Subtle amber border glow inset */}
+              <div
+                style={{
+                  position: "absolute",
+                  inset: 0,
+                  borderRadius: "20px",
+                  boxShadow: "inset 0 0 0 1px rgba(245,158,11,0.15)",
                   pointerEvents: "none",
                 }}
               />
