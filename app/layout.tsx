@@ -10,14 +10,16 @@ const inter = Inter({
   display: "swap",
 });
 
+const base = process.env.GITHUB_PAGES === "true" ? "/Kiran-Website" : "";
+
 export const metadata: Metadata = {
   title: "Kiran Sen — Web Designer & Developer",
   description:
     "Award-worthy web design by Kiran Sen. Conversion-focused landing pages, custom front-end builds, and animated SaaS products.",
   keywords: ["web design", "web developer", "freelance", "Next.js", "Framer Motion", "Washington DC"],
   icons: {
-    icon: "/favicon.svg",
-    shortcut: "/favicon.svg",
+    icon: `${base}/favicon.svg`,
+    shortcut: `${base}/favicon.svg`,
   },
   openGraph: {
     title: "Kiran Sen — Web Designer & Developer",
