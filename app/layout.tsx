@@ -15,6 +15,10 @@ export const metadata: Metadata = {
   description:
     "Award-worthy web design by Kiran Sen. Conversion-focused landing pages, custom front-end builds, and animated SaaS products.",
   keywords: ["web design", "web developer", "freelance", "Next.js", "Framer Motion", "Washington DC"],
+  icons: {
+    icon: "/favicon.svg",
+    shortcut: "/favicon.svg",
+  },
   openGraph: {
     title: "Kiran Sen — Web Designer & Developer",
     description:
@@ -30,7 +34,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" className={`${inter.variable} antialiased`}>
-      <body className="bg-background text-muted overflow-x-hidden">
+      <body className="bg-background text-body overflow-x-hidden">
         <LenisProvider>
           <CustomCursor />
           {children}
