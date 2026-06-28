@@ -15,7 +15,7 @@ export function PortfolioSection() {
   const filtered = cat === "All" ? PROJECTS : PROJECTS.filter((p) => p.category === cat);
 
   return (
-    <section id="portfolio" className="py-32 px-6" style={{ background: "#FAF8F4" }}>
+    <section id="portfolio" className="py-16 md:py-28 lg:py-32 px-5 md:px-6" style={{ background: "#EDE8DF" }}>
       <div className="max-w-7xl mx-auto">
         <SectionHeading label="Selected Work" title="The Portfolio" />
 
@@ -48,8 +48,8 @@ export function PortfolioSection() {
                     transition: "all 0.3s",
                     cursor: "none",
                     background: active ? "#13294B" : "transparent",
-                    color: active ? "#FAF8F4" : "#4A5568",
-                    borderColor: active ? "#13294B" : "#E2DACD",
+                    color: active ? "#EDE8DF" : "#4A5568",
+                    borderColor: active ? "#13294B" : "#D9D0C3",
                   }}
                 >
                   {c}
@@ -63,10 +63,10 @@ export function PortfolioSection() {
             style={{
               display: "flex",
               gap: "2px",
-              background: "#F2EDE4",
+              background: "#D9D0C3",
               borderRadius: "999px",
               padding: "3px",
-              border: "1px solid #E2DACD",
+              border: "1px solid #D9D0C3",
             }}
           >
             {([
@@ -85,7 +85,7 @@ export function PortfolioSection() {
                     borderRadius: "999px",
                     border: "none",
                     background: active ? "#13294B" : "transparent",
-                    color: active ? "#FAF8F4" : "#4A5568",
+                    color: active ? "#EDE8DF" : "#4A5568",
                     transition: "all 0.2s",
                     cursor: "none",
                     display: "flex",

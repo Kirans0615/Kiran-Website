@@ -27,7 +27,7 @@ export function SectionHeading({ label, title, className = "", light = false }: 
       </motion.span>
       <div style={{ overflow: "hidden" }}>
         <motion.h2
-          className="font-display text-5xl md:text-6xl lg:text-7xl font-bold leading-tight"
+          className="font-display text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold leading-tight"
           style={{ color: light ? "#FAF8F4" : "#13294B" }}
           initial={shouldReduce ? {} : { y: "100%", opacity: 0 }}
           animate={inView ? { y: "0%", opacity: 1 } : {}}

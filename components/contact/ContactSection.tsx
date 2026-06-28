@@ -141,7 +141,7 @@ export function ContactSection() {
   };
 
   return (
-    <section id="contact" style={{ padding: "8rem 1.5rem", background: "#F2EDE4" }}>
+    <section id="contact" className="py-16 md:py-28 lg:py-32 px-5 md:px-6" style={{ background: "#E5DDD0" }}>
       <div className="max-w-7xl mx-auto">
         <SectionHeading label="Get In Touch" title="Let's Work Together" />
 
@@ -149,7 +149,7 @@ export function ContactSection() {
           style={{
             display: "grid",
             gridTemplateColumns: "repeat(auto-fit, minmax(min(100%, 360px), 1fr))",
-            gap: "72px",
+            gap: "clamp(36px, 5vw, 72px)",
           }}
         >
           {/* Left column */}
@@ -270,7 +270,7 @@ export function ContactSection() {
                   style={{
                     padding: "16px 32px",
                     background: "#13294B",
-                    color: "#FAF8F4",
+                    color: "#EDE8DF",
                     opacity: status === "sending" ? 0.7 : 1,
                     width: "100%",
                     boxShadow: "0 4px 20px rgba(19,41,75,0.2)",

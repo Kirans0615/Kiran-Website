@@ -50,7 +50,7 @@ export function ProjectCard({ project, index }: { project: Project; index: numbe
           rotateY: sRotY,
           transformStyle: "preserve-3d" as const,
           background: "#FFFFFF",
-          borderColor: hovered ? "rgba(200,144,42,0.35)" : "#E2DACD",
+          borderColor: hovered ? "rgba(200,144,42,0.35)" : "#D9D0C3",
         }}
         onMouseMove={onMove}
         onMouseEnter={() => setHovered(true)}
@@ -80,8 +80,8 @@ export function ProjectCard({ project, index }: { project: Project; index: numbe
             alignItems: "center",
             justifyContent: "space-between",
             padding: "16px 20px",
-            background: "#FAF8F4",
-            borderBottom: "1px solid #E2DACD",
+            background: "#EDE8DF",
+            borderBottom: "1px solid #D9D0C3",
           }}
         >
           <div style={{ display: "flex", alignItems: "center", gap: "10px" }}>
@@ -106,7 +106,7 @@ export function ProjectCard({ project, index }: { project: Project; index: numbe
         </div>
 
         {/* Browser frame */}
-        <div style={{ padding: "0 16px", background: "#F2EDE4" }}>
+        <div style={{ padding: "0 16px", background: "#E5DDD0" }}>
           <BrowserFrame url={project.url} title={project.title} deviceMode={device} />
         </div>
 
@@ -142,10 +142,10 @@ export function ProjectCard({ project, index }: { project: Project; index: numbe
                   style={{
                     fontSize: "10px",
                     color: "#4A5568",
-                    border: "1px solid #E2DACD",
+                    border: "1px solid #D9D0C3",
                     borderRadius: "4px",
                     padding: "1px 6px",
-                    background: "#FAF8F4",
+                    background: "#EDE8DF",
                   }}
                 >
                   {t}

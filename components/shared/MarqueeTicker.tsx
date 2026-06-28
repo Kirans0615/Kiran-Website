@@ -16,7 +16,7 @@ export function MarqueeTicker() {
   return (
     <div
       className="overflow-hidden py-6"
-      style={{ borderTop: "1px solid #E2DACD", borderBottom: "1px solid #E2DACD", background: "#F2EDE4" }}
+      style={{ borderTop: "1px solid #D9D0C3", borderBottom: "1px solid #D9D0C3", background: "#E5DDD0" }}
     >
       <div
         style={{

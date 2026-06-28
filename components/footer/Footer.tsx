@@ -17,8 +17,8 @@ export function Footer() {
   return (
     <footer
       ref={ref}
+      className="pt-16 pb-10 px-5 md:pt-20 md:pb-12 md:px-6"
       style={{
-        padding: "5rem 1.5rem 3rem",
         background: "#13294B",
         borderTop: "none",
         position: "relative",

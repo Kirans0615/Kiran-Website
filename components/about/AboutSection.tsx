@@ -22,7 +22,7 @@ export function AboutSection() {
   const shouldReduce = useReducedMotion();
 
   return (
-    <section id="about" style={{ padding: "8rem 1.5rem", background: "#FAF8F4" }}>
+    <section id="about" className="py-16 md:py-28 lg:py-32 px-5 md:px-6" style={{ background: "#EDE8DF" }}>
       <div className="max-w-7xl mx-auto">
         <SectionHeading label="The Designer" title="About Kiran" />
 
@@ -30,7 +30,7 @@ export function AboutSection() {
           style={{
             display: "grid",
             gridTemplateColumns: "repeat(auto-fit, minmax(min(100%, 380px), 1fr))",
-            gap: "64px",
+            gap: "clamp(32px, 5vw, 64px)",
             alignItems: "start",
           }}
         >
@@ -97,7 +97,7 @@ export function AboutSection() {
                 bottom: "-16px",
                 right: "-16px",
                 background: "#13294B",
-                color: "#FAF8F4",
+                color: "#EDE8DF",
                 borderRadius: "16px",
                 padding: "12px 20px",
                 boxShadow: "0 8px 32px rgba(19,41,75,0.25)",
@@ -136,7 +136,7 @@ export function AboutSection() {
                 gridTemplateColumns: "repeat(2, 1fr)",
                 gap: "24px",
                 paddingTop: "28px",
-                borderTop: "1px solid #E2DACD",
+                borderTop: "1px solid #D9D0C3",
               }}
             >
               {STATS.map((s) => (

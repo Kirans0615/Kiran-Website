@@ -42,21 +42,21 @@ export function BrowserFrame({ url, title, deviceMode }: BrowserFrameProps) {
     <div
       style={{
         width: "100%",
-        background: "#F2EDE4",
+        background: "#E5DDD0",
         borderRadius: "12px",
         overflow: "hidden",
-        border: "1px solid #E2DACD",
+        border: "1px solid #D9D0C3",
       }}
     >
       {/* Browser chrome */}
       <div
         style={{
-          background: "#E8E0D4",
+          background: "#D9D0C3",
           padding: "10px 14px",
           display: "flex",
           alignItems: "center",
           gap: "10px",
-          borderBottom: "1px solid #E2DACD",
+          borderBottom: "1px solid #D9D0C3",
         }}
       >
         {/* Traffic lights */}
@@ -72,10 +72,10 @@ export function BrowserFrame({ url, title, deviceMode }: BrowserFrameProps) {
             display: "flex",
             alignItems: "center",
             gap: "6px",
-            background: "rgba(250,248,244,0.8)",
+            background: "rgba(237,232,223,0.85)",
             borderRadius: "6px",
             padding: "4px 10px",
-            border: "1px solid #E2DACD",
+            border: "1px solid #D9D0C3",
           }}
         >
           {/* Lock icon */}
@@ -158,7 +158,7 @@ export function BrowserFrame({ url, title, deviceMode }: BrowserFrameProps) {
               flexDirection: "column",
               alignItems: "center",
               justifyContent: "center",
-              background: "#F2EDE4",
+              background: "#E5DDD0",
             }}
           >
             <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#C8902A" strokeWidth="1.5">

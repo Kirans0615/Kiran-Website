@@ -45,23 +45,13 @@ function PerspectiveGrid() {
           const xLeft  = 720 - 720 * t;
           const xRight = 720 + 720 * t;
           return (
-            <line
-              key={`h${i}`}
-              x1={xLeft} y1={y}
-              x2={xRight} y2={y}
-              stroke="rgba(19,41,75,0.08)"
-              strokeWidth={0.5}
-            />
+            <line key={`h${i}`} x1={xLeft} y1={y} x2={xRight} y2={y}
+              stroke="rgba(19,41,75,0.07)" strokeWidth={0.5} />
           );
         })}
         {[-6,-5,-4,-3,-2,-1,0,1,2,3,4,5,6].map((n, i) => (
-          <line
-            key={`v${i}`}
-            x1={720} y1={0}
-            x2={720 + n * 120} y2={320}
-            stroke="rgba(19,41,75,0.05)"
-            strokeWidth={0.5}
-          />
+          <line key={`v${i}`} x1={720} y1={0} x2={720 + n * 120} y2={320}
+            stroke="rgba(19,41,75,0.04)" strokeWidth={0.5} />
         ))}
         <ellipse cx="720" cy="0" rx="340" ry="18" fill="rgba(200,144,42,0.04)" />
       </svg>
@@ -83,18 +73,18 @@ export function Hero() {
     <section
       ref={sectionRef}
       id="hero"
-      style={{ position: "relative", minHeight: "100vh", display: "flex", flexDirection: "column", justifyContent: "center", overflow: "hidden", background: "#FAF8F4" }}
+      style={{ position: "relative", minHeight: "100vh", display: "flex", flexDirection: "column", justifyContent: "center", overflow: "hidden", background: "#EDE8DF" }}
     >
       <MeshBackground />
 
-      {/* Subtle dot-grid overlay */}
+      {/* Dot-grid overlay */}
       <div
         aria-hidden="true"
         style={{
           position: "absolute",
           inset: 0,
           pointerEvents: "none",
-          backgroundImage: "radial-gradient(circle, rgba(19,41,75,0.08) 1px, transparent 1px)",
+          backgroundImage: "radial-gradient(circle, rgba(19,41,75,0.07) 1px, transparent 1px)",
           backgroundSize: "40px 40px",
           maskImage: "radial-gradient(ellipse 80% 60% at 50% 50%, black 20%, transparent 100%)",
           WebkitMaskImage: "radial-gradient(ellipse 80% 60% at 50% 50%, black 20%, transparent 100%)",
@@ -104,14 +94,18 @@ export function Hero() {
       <FloatingCode />
       <PerspectiveGrid />
 
-      {/* Main content */}
+      {/* Main content — responsive padding replaces 9rem fixed */}
       <motion.div
         ref={inViewRef}
-        style={{ y: parallaxY, position: "relative", zIndex: 10, maxWidth: "1280px", margin: "0 auto", padding: "9rem 1.5rem 6rem", width: "100%" }}
+        className="relative z-10 w-full max-w-[1280px] mx-auto
+                   pt-24 pb-16 px-5
+                   sm:pt-32 sm:pb-20 sm:px-6
+                   md:pt-36 md:pb-24"
+        style={{ y: parallaxY }}
       >
-        {/* Terminal-style label with scramble */}
+        {/* Terminal label */}
         <motion.div
-          style={{ display: "flex", alignItems: "center", gap: "12px", marginBottom: "2.5rem" }}
+          style={{ display: "flex", alignItems: "center", gap: "12px", marginBottom: "2rem" }}
           initial={shouldReduce ? {} : { opacity: 0, y: 16 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
@@ -129,10 +123,10 @@ export function Hero() {
           />
         </motion.div>
 
-        {/* Main headline */}
+        {/* Headline */}
         <h1
           className="font-display font-bold"
-          style={{ fontSize: "clamp(3rem, 9.5vw, 9rem)", lineHeight: 0.95, letterSpacing: "-0.02em", marginBottom: "1.5rem", color: "#13294B" }}
+          style={{ fontSize: "clamp(2.6rem, 9.5vw, 9rem)", lineHeight: 0.95, letterSpacing: "-0.02em", marginBottom: "1.25rem", color: "#13294B" }}
         >
           {HEADLINE_WORDS.map(({ word, accent }, i) => (
             <span key={word} style={{ display: "inline-block", overflow: "hidden", marginRight: "0.15em" }}>
@@ -148,9 +142,9 @@ export function Hero() {
           ))}
         </h1>
 
-        {/* Typewriter skills line */}
+        {/* Typewriter */}
         <motion.div
-          style={{ marginBottom: "1.5rem" }}
+          style={{ marginBottom: "1.25rem" }}
           initial={shouldReduce ? {} : { opacity: 0 }}
           animate={inView ? { opacity: 1 } : {}}
           transition={{ delay: 0.7 }}
@@ -160,7 +154,7 @@ export function Hero() {
 
         {/* Sub copy */}
         <motion.p
-          style={{ color: "#4A5568", fontSize: "1.05rem", lineHeight: 1.7, maxWidth: "480px", marginBottom: "3rem" }}
+          style={{ color: "#4A5568", fontSize: "1rem", lineHeight: 1.7, maxWidth: "480px", marginBottom: "2rem" }}
           initial={shouldReduce ? {} : { opacity: 0, y: 16 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.8, delay: 0.75, ease: [0.16, 1, 0.3, 1] }}
@@ -170,7 +164,7 @@ export function Hero() {
 
         {/* Tech pills */}
         <motion.div
-          style={{ display: "flex", flexWrap: "wrap", gap: "8px", marginBottom: "3rem" }}
+          style={{ display: "flex", flexWrap: "wrap", gap: "8px", marginBottom: "2rem" }}
           initial={shouldReduce ? {} : { opacity: 0, y: 12 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.7, delay: 0.85 }}
@@ -200,7 +194,7 @@ export function Hero() {
 
         {/* CTAs */}
         <motion.div
-          style={{ display: "flex", flexWrap: "wrap", gap: "16px", alignItems: "center" }}
+          style={{ display: "flex", flexWrap: "wrap", gap: "12px", alignItems: "center" }}
           initial={shouldReduce ? {} : { opacity: 0, y: 16 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.8, delay: 1.0, ease: [0.16, 1, 0.3, 1] }}
@@ -209,7 +203,7 @@ export function Hero() {
             onClick={() => scrollTo("#portfolio")}
             data-cursor="View"
             className="font-display font-semibold rounded-full text-sm tracking-wide"
-            style={{ padding: "14px 32px", backgroundColor: "#13294B", color: "#FAF8F4", boxShadow: "0 4px 24px rgba(19,41,75,0.2)" }}
+            style={{ padding: "13px 28px", backgroundColor: "#13294B", color: "#EDE8DF", boxShadow: "0 4px 24px rgba(19,41,75,0.2)" }}
           >
             View My Work
           </MagneticButton>
@@ -217,21 +211,17 @@ export function Hero() {
             onClick={() => scrollTo("#contact")}
             data-cursor="hover"
             className="font-display font-medium rounded-full text-sm tracking-wide"
-            style={{ padding: "14px 32px", border: "1px solid rgba(19,41,75,0.3)", color: "#13294B" }}
+            style={{ padding: "13px 28px", border: "1px solid rgba(19,41,75,0.3)", color: "#13294B" }}
           >
             Get in Touch
           </MagneticButton>
 
           {/* Available indicator */}
-          <div style={{ display: "flex", alignItems: "center", gap: "8px", marginLeft: "8px" }}>
+          <div style={{ display: "flex", alignItems: "center", gap: "7px" }}>
             <span
               style={{
-                width: "8px",
-                height: "8px",
-                borderRadius: "50%",
-                background: "#10b981",
-                display: "inline-block",
-                boxShadow: "0 0 10px rgba(16,185,129,0.6)",
+                width: "8px", height: "8px", borderRadius: "50%", background: "#10b981",
+                display: "inline-block", boxShadow: "0 0 10px rgba(16,185,129,0.6)",
                 animation: "pulse-dot 2s infinite",
               }}
             />
@@ -239,9 +229,16 @@ export function Hero() {
           </div>
         </motion.div>
 
-        {/* Stats strip */}
+        {/* Stats strip — responsive gap and margin */}
         <motion.div
-          style={{ display: "flex", flexWrap: "wrap", gap: "40px", marginTop: "72px", paddingTop: "40px", borderTop: "1px solid rgba(19,41,75,0.1)" }}
+          style={{
+            display: "flex",
+            flexWrap: "wrap",
+            gap: "clamp(20px, 5vw, 40px)",
+            marginTop: "clamp(36px, 6vw, 72px)",
+            paddingTop: "clamp(20px, 4vw, 40px)",
+            borderTop: "1px solid rgba(19,41,75,0.1)",
+          }}
           initial={shouldReduce ? {} : { opacity: 0 }}
           animate={inView ? { opacity: 1 } : {}}
           transition={{ duration: 1, delay: 1.2 }}
@@ -253,7 +250,7 @@ export function Hero() {
             { n: "0",    label: "Templates Used"     },
           ].map(({ n, label }) => (
             <div key={label}>
-              <div className="font-display font-bold" style={{ fontSize: "1.8rem", lineHeight: 1, color: "#13294B" }}>{n}</div>
+              <div className="font-display font-bold" style={{ fontSize: "clamp(1.4rem, 3vw, 1.8rem)", lineHeight: 1, color: "#13294B" }}>{n}</div>
               <div style={{ color: "#6B7280", fontSize: "0.65rem", letterSpacing: "0.18em", textTransform: "uppercase", marginTop: "4px" }}>
                 {label}
               </div>
@@ -264,7 +261,7 @@ export function Hero() {
 
       {/* Scroll indicator */}
       <motion.div
-        style={{ position: "absolute", bottom: "28px", left: "50%", transform: "translateX(-50%)", display: "flex", flexDirection: "column", alignItems: "center", gap: "6px", color: "#6B7280", zIndex: 10 }}
+        style={{ position: "absolute", bottom: "24px", left: "50%", transform: "translateX(-50%)", display: "flex", flexDirection: "column", alignItems: "center", gap: "6px", color: "#6B7280", zIndex: 10 }}
         initial={shouldReduce ? {} : { opacity: 0 }}
         animate={inView ? { opacity: 1 } : {}}
         transition={{ delay: 1.5 }}

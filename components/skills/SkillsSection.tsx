@@ -37,7 +37,7 @@ function SkillCard({ skill, index }: { skill: typeof SKILLS[0]; index: number })
         background: "#FFFFFF",
         borderRadius: "20px",
         padding: "24px",
-        border: `1px solid ${hovered ? "rgba(200,144,42,0.35)" : "#E2DACD"}`,
+        border: `1px solid ${hovered ? "rgba(200,144,42,0.35)" : "#D9D0C3"}`,
         overflow: "hidden",
         transform: shouldReduce ? "none" : hovered ? "translateY(-6px)" : "translateY(0px)",
         transition: "transform 0.3s ease, border-color 0.4s ease, box-shadow 0.4s ease",
@@ -94,7 +94,7 @@ function SkillCard({ skill, index }: { skill: typeof SKILLS[0]; index: number })
         </p>
 
         {/* Stat */}
-        <div style={{ paddingTop: "16px", borderTop: "1px solid #E2DACD" }}>
+        <div style={{ paddingTop: "16px", borderTop: "1px solid #D9D0C3" }}>
           <div className="font-display font-bold" style={{ fontSize: "1.6rem", color: "#C8902A" }}>
             {stat}
           </div>
@@ -109,7 +109,7 @@ function SkillCard({ skill, index }: { skill: typeof SKILLS[0]; index: number })
 
 export function SkillsSection() {
   return (
-    <section id="skills" style={{ padding: "8rem 1.5rem", background: "#F2EDE4" }}>
+    <section id="skills" className="py-16 md:py-28 lg:py-32 px-5 md:px-6" style={{ background: "#E5DDD0" }}>
       <div className="max-w-7xl mx-auto">
         <SectionHeading label="Capabilities" title="Skills & Services" />
         <div
