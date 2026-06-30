@@ -10,7 +10,7 @@ import { SectionHeading } from "@/components/shared/SectionHeading";
 const SKILLS = [
   { Icon: Smartphone,    title: "Responsive Design",          desc: "Pixel-perfect across every device — from iPhone SE to 4K display.",              stat: "100%",  statLabel: "device coverage"    },
   { Icon: Zap,          title: "Framer Motion Animation",     desc: "Buttery smooth, purposeful animation that elevates user experience.",             stat: "60fps", statLabel: "animation target"   },
-  { Icon: Target,       title: "Conversion-Focused UI",       desc: "Every element designed to guide visitors toward taking action.",                  stat: "8+",   statLabel: "projects delivered" },
+  { Icon: Target,       title: "Conversion-Focused UI",       desc: "Every element designed to guide visitors toward taking action."                                                    },
   { Icon: Code2,        title: "Custom Front-End Builds",     desc: "Next.js, TypeScript, Tailwind — no page builders, no compromise.",                stat: "0",    statLabel: "templates used"     },
   { Icon: Send,         title: "Netlify Forms",               desc: "Seamless contact and lead capture forms — no backend required.",                  stat: "< 1s", statLabel: "form response"      },
   { Icon: CalendarCheck,title: "Calendly Integration",        desc: "Embedded booking flows that convert visitors to scheduled calls.",                stat: "3+",   statLabel: "clients booked"     },
@@ -94,14 +94,16 @@ function SkillCard({ skill, index }: { skill: typeof SKILLS[0]; index: number })
         </p>
 
         {/* Stat */}
-        <div style={{ paddingTop: "16px", borderTop: "1px solid #D9D0C3" }}>
-          <div className="font-display font-bold" style={{ fontSize: "1.6rem", color: "#C8902A" }}>
-            {stat}
+        {stat && (
+          <div style={{ paddingTop: "16px", borderTop: "1px solid #D9D0C3" }}>
+            <div className="font-display font-bold" style={{ fontSize: "1.6rem", color: "#C8902A" }}>
+              {stat}
+            </div>
+            <div style={{ color: "#6B7280", fontSize: "0.65rem", letterSpacing: "0.15em", textTransform: "uppercase", marginTop: "2px" }}>
+              {statLabel}
+            </div>
           </div>
-          <div style={{ color: "#6B7280", fontSize: "0.65rem", letterSpacing: "0.15em", textTransform: "uppercase", marginTop: "2px" }}>
-            {statLabel}
-          </div>
-        </div>
+        )}
       </div>
     </motion.div>
   );
