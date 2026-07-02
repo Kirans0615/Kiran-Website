@@ -118,7 +118,7 @@ export const PROJECTS: Project[] = [
     id: "federal-eeo",
     num: "12",
     title: "Federal EEO, LLC",
-    url: "https://federal-eeo.netlify.app/",
+    url: "https://kirans0615.github.io/Federal-EEO-Web/",
     description: "DC federal employment law practice with consultation booking and client intake.",
     category: "Business",
     tags: ["Law Firm", "Client Intake", "Booking"],
