@@ -1,6 +1,12 @@
-[build]
-  command = "npm run build"
-  publish = ".next"
+# This site moved to kiransenwebsites.com (GitHub Pages).
+# The Netlify deployment now only 301-redirects old links to the new domain.
 
-[[plugins]]
-  package = "@netlify/plugin-nextjs"
+[build]
+  command = "mkdir -p redirect-only"
+  publish = "redirect-only"
+
+[[redirects]]
+  from = "/*"
+  to = "https://kiransenwebsites.com/:splat"
+  status = 301
+  force = true
