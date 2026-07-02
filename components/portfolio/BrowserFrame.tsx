@@ -6,6 +6,7 @@ interface BrowserFrameProps {
   url: string;
   title: string;
   deviceMode: "desktop" | "mobile";
+  embed?: boolean;
 }
 
 function microlinkUrl(url: string) {
@@ -18,16 +19,20 @@ function thumioUrl(url: string) {
 
 type Mode = "iframe" | "microlink" | "thumio" | "error";
 
-export function BrowserFrame({ url, title, deviceMode }: BrowserFrameProps) {
-  const [mode, setMode]           = useState<Mode>("iframe");
+export function BrowserFrame({ url, title, deviceMode, embed = true }: BrowserFrameProps) {
+  // Sites that block iframes (X-Frame-Options) fire onLoad on the browser's
+  // error page, so a blocked embed is undetectable — skip straight to the
+  // screenshot when the project is flagged embed: false.
+  const initialMode: Mode         = embed ? "iframe" : "microlink";
+  const [mode, setMode]           = useState<Mode>(initialMode);
   const timeoutRef                = useRef<ReturnType<typeof setTimeout> | undefined>(undefined);
   const iframeKey                 = useRef(0);
 
   useEffect(() => {
     clearTimeout(timeoutRef.current);
     iframeKey.current += 1;
-    setMode("iframe");
-  }, [url]);
+    setMode(initialMode);
+  }, [url, initialMode]);
 
   useEffect(() => {
     if (mode !== "iframe") return;

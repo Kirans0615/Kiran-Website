@@ -8,6 +8,9 @@ export interface Project {
   description: string;
   category: Exclude<Category, "All">;
   tags: string[];
+  /** Set false when the site blocks iframes (X-Frame-Options / frame-ancestors)
+      so the card shows a screenshot instead of "refused to connect". */
+  embed?: boolean;
 }
 
 export const PROJECTS: Project[] = [
@@ -28,6 +31,7 @@ export const PROJECTS: Project[] = [
     description: "Real estate investment brand with conversion-focused design.",
     category: "Business",
     tags: ["Real Estate", "Investment", "Brand"],
+    embed: false,
   },
   {
     id: "arvyx",

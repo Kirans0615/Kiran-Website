@@ -107,7 +107,7 @@ export function ProjectCard({ project, index }: { project: Project; index: numbe
 
         {/* Browser frame */}
         <div style={{ padding: "0 16px", background: "#E5DDD0" }}>
-          <BrowserFrame url={project.url} title={project.title} deviceMode={device} />
+          <BrowserFrame url={project.url} title={project.title} deviceMode={device} embed={project.embed} />
         </div>
 
         {/* Footer */}
