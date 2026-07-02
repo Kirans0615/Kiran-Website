@@ -71,6 +71,8 @@ export function CustomCursor() {
           height: "8px",
           borderRadius: "50%",
           background: "#13294B",
+          // Keeps the dot visible on navy surfaces (preloader, footer)
+          boxShadow: "0 0 0 1.5px rgba(250,248,244,0.9)",
           pointerEvents: "none",
           zIndex: 99999,
           x: dotX,
