@@ -14,7 +14,7 @@ const isGhPages = process.env.GITHUB_PAGES === "true";
 const base = isGhPages ? "/Kiran-Website" : "";
 const siteUrl = isGhPages
   ? "https://kirans0615.github.io/Kiran-Website"
-  : (process.env.NEXT_PUBLIC_SITE_URL ?? "https://kiransendesign.com");
+  : (process.env.NEXT_PUBLIC_SITE_URL ?? "https://kirans0615.github.io/Kiran-Website");
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),

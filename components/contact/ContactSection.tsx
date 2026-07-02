@@ -135,7 +135,7 @@ export function ContactSection() {
         setName(""); setEmail(""); setMessage("");
       } else throw new Error();
     } catch {
-      window.location.href = `mailto:kirans0615@gmail.com?subject=Portfolio Inquiry from ${encodeURIComponent(name)}&body=${encodeURIComponent(message)}`;
+      window.location.href = `mailto:kirans0615@gmail.com?subject=Portfolio Inquiry from ${encodeURIComponent(name)}&body=${encodeURIComponent(`${message}\n\nReply to: ${email}`)}`;
       setStatus("idle");
     }
   };
