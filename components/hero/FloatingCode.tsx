@@ -17,7 +17,7 @@ const CODE_FRAGMENTS = [
   `framer-motion\nnext tailwindcss`,
   `<AnimatePresence mode="popLayout">`,
   `rotateX: sRotX,\ntransformStyle: "preserve-3d"`,
-  `basePath: "/Kiran-Website"`,
+  `domain: "kiransenwebsites.com"`,
 ];
 
 interface Fragment {

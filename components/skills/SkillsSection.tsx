@@ -12,7 +12,7 @@ const SKILLS = [
   { Icon: Zap,          title: "Framer Motion Animation",     desc: "Buttery smooth, purposeful animation that elevates user experience.",             stat: "60fps", statLabel: "animation target"   },
   { Icon: Target,       title: "Conversion-Focused UI",       desc: "Every element designed to guide visitors toward taking action."                                                    },
   { Icon: Code2,        title: "Custom Front-End Builds",     desc: "Next.js, TypeScript, Tailwind — no page builders, no compromise.",                stat: "0",    statLabel: "templates used"     },
-  { Icon: Send,         title: "Netlify Forms",               desc: "Seamless contact and lead capture forms — no backend required.",                  stat: "< 1s", statLabel: "form response"      },
+  { Icon: Send,         title: "Lead Capture Forms",          desc: "Contact forms with instant email delivery — no backend required.",                stat: "< 1s", statLabel: "form response"      },
   { Icon: CalendarCheck,title: "Calendly Integration",        desc: "Embedded booking flows that convert visitors to scheduled calls.",                stat: "3+",   statLabel: "clients booked"     },
   { Icon: Palette,      title: "Brand-Consistent UI",         desc: "Every color, font, and pixel aligned with your brand identity.",                  stat: "∞",    statLabel: "revisions offered"  },
   { Icon: Globe,        title: "Deploy & Launch",             desc: "From localhost to live — Netlify, Vercel, and GitHub Pages deploys.",             stat: "< 24h",statLabel: "avg. deploy time"   },

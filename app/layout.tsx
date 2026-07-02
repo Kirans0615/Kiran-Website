@@ -10,11 +10,7 @@ const inter = Inter({
   display: "swap",
 });
 
-const isGhPages = process.env.GITHUB_PAGES === "true";
-const base = isGhPages ? "/Kiran-Website" : "";
-const siteUrl = isGhPages
-  ? "https://kirans0615.github.io/Kiran-Website"
-  : (process.env.NEXT_PUBLIC_SITE_URL ?? "https://kirans0615.github.io/Kiran-Website");
+const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "https://kiransenwebsites.com";
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
@@ -23,8 +19,8 @@ export const metadata: Metadata = {
     "Award-worthy web design by Kiran Sen. Conversion-focused landing pages, custom front-end builds, and animated SaaS products.",
   keywords: ["web design", "web developer", "freelance", "Next.js", "Framer Motion", "Washington DC"],
   icons: {
-    icon: `${base}/favicon.svg`,
-    shortcut: `${base}/favicon.svg`,
+    icon: "/favicon.svg",
+    shortcut: "/favicon.svg",
   },
   openGraph: {
     title: "Kiran Sen — Web Designer & Developer",

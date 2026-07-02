@@ -125,10 +125,19 @@ export function ContactSection() {
     e.preventDefault();
     setStatus("sending");
     try {
-      const res = await fetch("/", {
+      // FormSubmit delivers each submission to the inbox below — works on
+      // static hosting (GitHub Pages) with no backend.
+      const res = await fetch("https://formsubmit.co/ajax/kirans0615@gmail.com", {
         method: "POST",
-        headers: { "Content-Type": "application/x-www-form-urlencoded" },
-        body: new URLSearchParams({ "form-name": "contact", name, email, message }).toString(),
+        headers: { "Content-Type": "application/json", Accept: "application/json" },
+        body: JSON.stringify({
+          name,
+          email,
+          message,
+          _subject: `Portfolio inquiry from ${name}`,
+          _template: "table",
+          _captcha: "false",
+        }),
       });
       if (res.ok) {
         setStatus("success");
@@ -257,17 +266,9 @@ export function ContactSection() {
             ) : (
               <form
                 name="contact"
-                method="POST"
-                data-netlify="true"
-                netlify-honeypot="bot-field"
                 onSubmit={handleSubmit}
                 style={{ display: "flex", flexDirection: "column", gap: "36px" }}
               >
-                <input type="hidden" name="form-name" value="contact" />
-                <div style={{ display: "none" }}>
-                  <label>Don&apos;t fill this out: <input name="bot-field" /></label>
-                </div>
-
                 <FloatingField id="name"    label="Your Name"                  required value={name}    onChange={setName}    />
                 <FloatingField id="email"   label="Email Address" type="email" required value={email}   onChange={setEmail}   />
                 <FloatingField id="message" label="Tell me about your project"  required value={message} onChange={setMessage} rows={4} />

@@ -5,14 +5,10 @@ import path from "path";
 const isGHPages = process.env.GITHUB_PAGES === "true";
 
 const nextConfig: NextConfig = {
+  // Custom domain (kiransenwebsites.com) serves at the root — no basePath.
   ...(isGHPages && {
     output: "export",
-    basePath: "/Kiran-Website",
-    assetPrefix: "/Kiran-Website/",
   }),
-  env: {
-    NEXT_PUBLIC_BASE_PATH: isGHPages ? "/Kiran-Website" : "",
-  },
   turbopack: {
     root: path.join(__dirname),
   },
