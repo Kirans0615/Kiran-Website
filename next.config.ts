@@ -22,6 +22,7 @@ const nextConfig: NextConfig = {
       { protocol: "https", hostname: "api.microlink.io" },
       { protocol: "https", hostname: "image.thum.io" },
       { protocol: "https", hostname: "*.github.io" },
+      { protocol: "https", hostname: "*.netlify.app" },
       { protocol: "https", hostname: "raw.githubusercontent.com" },
       { protocol: "https", hostname: "omalleyfabrics.com" },
       { protocol: "https", hostname: "empowerestatesnetwork.com" },

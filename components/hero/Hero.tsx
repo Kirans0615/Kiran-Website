@@ -244,7 +244,7 @@ export function Hero() {
           transition={{ duration: 1, delay: 1.2 }}
         >
           {[
-            { n: "11+",  label: "Projects Delivered" },
+            { n: "12+",  label: "Projects Delivered" },
             { n: "3+",   label: "Years Experience"   },
             { n: "100%", label: "Client Satisfaction" },
             { n: "0",    label: "Templates Used"     },

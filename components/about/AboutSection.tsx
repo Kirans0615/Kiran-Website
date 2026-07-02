@@ -6,7 +6,7 @@ import { CountUpStat } from "@/components/shared/CountUpStat";
 import { RevealText } from "@/components/shared/RevealText";
 
 const STATS = [
-  { end: 11,  suffix: "",   label: "Projects Delivered"   },
+  { end: 12,  suffix: "",   label: "Projects Delivered"   },
   { end: 3,   suffix: "+",  label: "Years Experience"     },
   { end: 100, suffix: "%",  label: "Client Satisfaction"  },
   { end: 3,   suffix: "",   label: "Nonprofit Sites Built" },

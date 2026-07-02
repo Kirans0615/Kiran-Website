@@ -110,6 +110,15 @@ export const PROJECTS: Project[] = [
     category: "Business",
     tags: ["Author", "Books", "Brand"],
   },
+  {
+    id: "federal-eeo",
+    num: "12",
+    title: "Federal EEO, LLC",
+    url: "https://federal-eeo.netlify.app/",
+    description: "DC federal employment law practice with consultation booking and client intake.",
+    category: "Business",
+    tags: ["Law Firm", "Client Intake", "Booking"],
+  },
 ];
 
 export const CATEGORIES: Category[] = ["All", "SaaS", "Business", "Nonprofit"];
