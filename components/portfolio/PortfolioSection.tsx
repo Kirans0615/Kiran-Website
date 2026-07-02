@@ -46,7 +46,6 @@ export function PortfolioSection() {
                     fontWeight: 500,
                     border: "1px solid",
                     transition: "all 0.3s",
-                    cursor: "none",
                     background: active ? "#13294B" : "transparent",
                     color: active ? "#EDE8DF" : "#4A5568",
                     borderColor: active ? "#13294B" : "#D9D0C3",
@@ -87,7 +86,6 @@ export function PortfolioSection() {
                     background: active ? "#13294B" : "transparent",
                     color: active ? "#EDE8DF" : "#4A5568",
                     transition: "all 0.2s",
-                    cursor: "none",
                     display: "flex",
                   }}
                 >

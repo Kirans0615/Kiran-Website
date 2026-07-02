@@ -40,7 +40,8 @@ export function FloatingCode() {
     if (shouldReduce) return;
     const canvas = canvasRef.current!;
     const ctx = canvas.getContext("2d")!;
-    let animId: number;
+    let animId = 0;
+    let running = false;
     let t = 0;
 
     const resize = () => {
@@ -92,9 +93,20 @@ export function FloatingCode() {
       animId = requestAnimationFrame(draw);
     };
 
-    draw();
+    // Animate only while the hero is on screen.
+    const observer = new IntersectionObserver(([entry]) => {
+      if (entry.isIntersecting && !running) {
+        running = true;
+        animId = requestAnimationFrame(draw);
+      } else if (!entry.isIntersecting && running) {
+        running = false;
+        cancelAnimationFrame(animId);
+      }
+    });
+    observer.observe(canvas);
 
     return () => {
+      observer.disconnect();
       cancelAnimationFrame(animId);
       window.removeEventListener("resize", resize);
     };

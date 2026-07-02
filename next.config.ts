@@ -10,6 +10,9 @@ const nextConfig: NextConfig = {
     basePath: "/Kiran-Website",
     assetPrefix: "/Kiran-Website/",
   }),
+  env: {
+    NEXT_PUBLIC_BASE_PATH: isGHPages ? "/Kiran-Website" : "",
+  },
   turbopack: {
     root: path.join(__dirname),
   },

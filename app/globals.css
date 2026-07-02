@@ -1,4 +1,3 @@
-@import url("https://api.fontshare.com/v2/css?f[]=clash-display@400,500,600,700&display=swap");
 @import "tailwindcss";
 
 @theme {
@@ -37,7 +36,11 @@
   50%       { transform: translateY(8px); }
 }
 
-* { cursor: none; }
+/* Native cursor is hidden only while CustomCursor renders a replacement
+   (it adds .custom-cursor to <html> on fine-pointer, motion-enabled devices).
+   Everyone else — touch, reduced-motion (common on Windows), no-JS — keeps
+   the normal system cursor. */
+html.custom-cursor * { cursor: none !important; }
 
 html { scroll-behavior: auto; }
 
@@ -66,7 +69,7 @@ body::after {
 
 ::selection { background: rgba(19,41,75,0.12); color: #13294B; }
 
-a, button, [role="button"], input, textarea { cursor: none; }
+a, button, [role="button"] { cursor: pointer; }
 
 :focus-visible { outline: 2px solid #C8902A; outline-offset: 3px; }
 

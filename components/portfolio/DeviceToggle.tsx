@@ -37,7 +37,6 @@ export function DeviceToggle({ mode, onChange }: DeviceToggleProps) {
               background: active ? "#13294B" : "transparent",
               color: active ? "#FAF8F4" : "#4A5568",
               transition: "all 0.2s ease",
-              cursor: "none",
             }}
             aria-label={`${m} view`}
             data-cursor="hover"

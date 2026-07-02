@@ -5,7 +5,7 @@ import { motion, useMotionValue, useSpring, useReducedMotion } from "framer-moti
 
 export function CustomCursor() {
   const shouldReduce = useReducedMotion();
-  const [mounted, setMounted] = useState(false);
+  const [active, setActive] = useState(false);
   const [cursorLabel, setCursorLabel] = useState("");
   const [isHovering, setIsHovering] = useState(false);
 
@@ -18,7 +18,18 @@ export function CustomCursor() {
   const ringY = useSpring(mouseY, { stiffness: 120, damping: 18 });
 
   useEffect(() => {
-    setMounted(true);
+    // Only replace the native cursor on precise-pointer devices with motion
+    // enabled — otherwise the native cursor must stay visible.
+    const finePointer = window.matchMedia("(pointer: fine)").matches;
+    if (!finePointer || shouldReduce) {
+      setActive(false);
+      return;
+    }
+
+    setActive(true);
+    // Gates the `cursor: none` rules in globals.css so the native cursor is
+    // hidden only while this replacement is actually rendered.
+    document.documentElement.classList.add("custom-cursor");
 
     const onMove = (e: MouseEvent) => {
       mouseX.set(e.clientX);
@@ -40,12 +51,13 @@ export function CustomCursor() {
     window.addEventListener("mousemove", onMove, { passive: true });
     window.addEventListener("mouseover", onOver, { passive: true });
     return () => {
+      document.documentElement.classList.remove("custom-cursor");
       window.removeEventListener("mousemove", onMove);
       window.removeEventListener("mouseover", onOver);
     };
-  }, [mouseX, mouseY]);
+  }, [mouseX, mouseY, shouldReduce]);
 
-  if (!mounted || shouldReduce) return null;
+  if (!active) return null;
 
   return (
     <>

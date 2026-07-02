@@ -13,7 +13,8 @@ export function MeshBackground() {
 
     const canvas = canvasRef.current!;
     const ctx    = canvas.getContext("2d")!;
-    let animId: number;
+    let animId = 0;
+    let running = false;
     let t = 0;
 
     const resize = () => {
@@ -43,22 +44,35 @@ export function MeshBackground() {
       ];
 
       orbs.forEach(({ cx, cy, r, a }) => {
-        const grad = ctx.createRadialGradient(
-          cx * canvas.width, cy * canvas.height, 0,
-          cx * canvas.width, cy * canvas.height, r * canvas.width,
-        );
+        const px = cx * canvas.width;
+        const py = cy * canvas.height;
+        const pr = r * canvas.width;
+        const grad = ctx.createRadialGradient(px, py, 0, px, py, pr);
         grad.addColorStop(0, `rgba(19,41,75,${a})`);
         grad.addColorStop(1, "rgba(19,41,75,0)");
         ctx.fillStyle = grad;
-        ctx.fillRect(0, 0, canvas.width, canvas.height);
+        // Fill only the orb's bounding box — a full-canvas fill per orb was
+        // the main frame cost on large displays.
+        ctx.fillRect(px - pr, py - pr, pr * 2, pr * 2);
       });
 
       animId = requestAnimationFrame(draw);
     };
 
-    draw();
+    // Animate only while the hero is on screen.
+    const observer = new IntersectionObserver(([entry]) => {
+      if (entry.isIntersecting && !running) {
+        running = true;
+        animId = requestAnimationFrame(draw);
+      } else if (!entry.isIntersecting && running) {
+        running = false;
+        cancelAnimationFrame(animId);
+      }
+    });
+    observer.observe(canvas);
 
     return () => {
+      observer.disconnect();
       cancelAnimationFrame(animId);
       window.removeEventListener("resize", resize);
       window.removeEventListener("mousemove", onMouse);

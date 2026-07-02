@@ -31,7 +31,7 @@ export function Preloader({ onComplete }: PreloaderProps) {
 
     let current = 0;
     const id = setInterval(() => {
-      current += Math.random() * 18 + 4;
+      current += Math.random() * 22 + 8;
       if (current >= 100) {
         current = 100;
         setProgress(100);
@@ -39,12 +39,12 @@ export function Preloader({ onComplete }: PreloaderProps) {
         setTimeout(() => {
           setExiting(true);
           sessionStorage.setItem("ks-preloader", "1");
-          setTimeout(() => onCompleteRef.current(), 900);
-        }, 350);
+          setTimeout(() => onCompleteRef.current(), 650);
+        }, 250);
       } else {
         setProgress(Math.round(current));
       }
-    }, 75);
+    }, 55);
 
     return () => clearInterval(id);
   }, [shouldReduce]);

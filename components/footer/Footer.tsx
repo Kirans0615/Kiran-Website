@@ -101,7 +101,6 @@ export function Footer() {
               background: "none",
               border: "none",
               fontSize: "12px",
-              cursor: "none",
               transition: "color 0.3s",
             }}
           >

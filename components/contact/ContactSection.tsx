@@ -248,7 +248,7 @@ export function ContactSection() {
                 <p style={{ color: "#4A5568", marginBottom: "24px" }}>I'll get back to you within 24 hours.</p>
                 <button
                   onClick={() => setStatus("idle")}
-                  style={{ color: "#A8761F", fontSize: "13px", background: "none", border: "none", cursor: "none" }}
+                  style={{ color: "#A8761F", fontSize: "13px", background: "none", border: "none" }}
                   data-cursor="hover"
                 >
                   Send another →
