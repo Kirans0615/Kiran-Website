@@ -83,6 +83,33 @@ export const PROJECTS: Project[] = [
     category: "Nonprofit",
     tags: ["Education", "Africa", "Children"],
   },
+  {
+    id: "decade",
+    num: "09",
+    title: "Decade Hair Design",
+    url: "https://kirans0615.github.io/Decade-Hair/",
+    description: "Hair salon and styling studio with a clean, service-forward design.",
+    category: "Business",
+    tags: ["Salon", "Beauty", "Local Business"],
+  },
+  {
+    id: "kasablanca",
+    num: "10",
+    title: "Kasablanca Remodeling",
+    url: "https://kirans0615.github.io/Kasablanca-Remodeling-Mockup/",
+    description: "Maryland remodeling & landscaping company with project showcase.",
+    category: "Business",
+    tags: ["Remodeling", "Landscaping", "Home Services"],
+  },
+  {
+    id: "arthur",
+    num: "11",
+    title: "Arthur Morgan Books",
+    url: "https://kirans0615.github.io/arthur-morgan-mockup/",
+    description: "Children's book author brand with playful, story-driven design.",
+    category: "Business",
+    tags: ["Author", "Books", "Brand"],
+  },
 ];
 
 export const CATEGORIES: Category[] = ["All", "SaaS", "Business", "Nonprofit"];
